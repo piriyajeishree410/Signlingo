@@ -1,0 +1,47 @@
+.pathContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  position: relative;
+}
+
+.lessonWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.connector {
+  width: 6px;
+  height: 60px;
+  border-radius: 4px;
+  margin-top: 0.3rem;
+  transition: all 0.3s ease;
+}
+
+.connectorCompleted {
+  background-color: #49a078;
+}
+
+.connectorPending {
+  background-color: #9cc5a1;
+  opacity: 0.5;
+}
+
+/* Responsive tweak: horizontal layout on wider screens */
+@media (min-width: 768px) {
+  .pathContainer {
+    flex-direction: row;
+    justify-content: center;
+    gap: 3rem;
+  }
+
+  .connector {
+    height: 6px;
+    width: 80px;
+    margin: 0 1rem;
+  }
+}

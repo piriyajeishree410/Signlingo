@@ -1,0 +1,30 @@
+.card {
+  background: #49a078;
+  color: #dce1de;
+  border-radius: 16px;
+  padding: 1rem 1.5rem;
+  width: 180px;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  box-shadow: 0 3px 6px rgba(31, 36, 33, 0.25);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.icon {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+}
+
+p {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
