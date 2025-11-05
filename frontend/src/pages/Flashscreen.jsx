@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Flashscreen.module.css";
-import heroImg from "../assets/images/interpreter.png";
+//import heroImg from "../assets/images/interpreter.png";
 
 const Flashscreen = () => {
   const navigate = useNavigate();
@@ -29,17 +29,9 @@ const Flashscreen = () => {
             Learn. Practice. Communicate — all in one interactive platform that
             makes sign language learning engaging and easy.
           </p>
-          <button
-            className={styles.ctaBtn}
-            onClick={() => navigate("/login")}
-          >
+          <button className={styles.ctaBtn} onClick={() => navigate("/login")}>
             Start Learning
           </button>
-        </div>
-        <div className={styles.imageBlock}>
-          {/* <img src={heroImg} 
-          alt="Sign language learning" 
-          className={styles.heroImg} /> */}
         </div>
       </section>
 
@@ -48,15 +40,23 @@ const Flashscreen = () => {
         <div className={styles.cards}>
           <div className={styles.card}>
             <h3>Learn with Lessons</h3>
-            <p>Structured modules — from alphabets to greetings and everyday expressions.</p>
+            <p>
+              Structured modules — from alphabets to greetings and everyday
+              expressions.
+            </p>
           </div>
           <div className={styles.card}>
             <h3>Fun Quizzes</h3>
-            <p>Challenge yourself with multiple-choice and typing practice quizzes!</p>
+            <p>
+              Challenge yourself with multiple-choice and typing practice
+              quizzes!
+            </p>
           </div>
           <div className={styles.card}>
             <h3>Live Practice</h3>
-            <p>Try real-time webcam-based recognition to perfect your gestures.</p>
+            <p>
+              Try real-time webcam-based recognition to perfect your gestures.
+            </p>
           </div>
         </div>
       </section>

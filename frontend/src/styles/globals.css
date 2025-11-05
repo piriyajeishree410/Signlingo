@@ -1,0 +1,30 @@
+@import "./variables.css";
+
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: #111;
+  background: #fff;
+}
+a {
+  color: var(--c-deep);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+button {
+  font-family: inherit;
+}
+input,
+button {
+  outline: none;
+}

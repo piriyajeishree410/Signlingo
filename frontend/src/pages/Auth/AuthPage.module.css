@@ -1,0 +1,113 @@
+@import "../../styles/variables.css";
+
+/* Center the card on the page */
+.wrap {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 40px clamp(16px, 6vw, 64px);
+  background: #fff;
+}
+
+/* One shared card: single shadow + single radius */
+.card {
+  width: min(1180px, 100%);
+  display: grid;
+  grid-template-columns: 36% 64%; /* smaller image, bigger form */
+  border-radius: 26px;
+  overflow: hidden;
+  background: #fff;
+  /* unified shadow so both halves look like one piece */
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.12);
+  /* fade-in on mount */
+  animation: fadeInUp 420ms ease-out both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Left side: image area */
+.imageSide {
+  background: var(--c-cloud);
+  display: grid;
+  place-items: center;
+  padding: clamp(12px, 3vw, 28px);
+}
+
+/* Keep the image tasteful/smaller */
+.img {
+  width: 100%;
+  max-width: 420px; /* smaller than before */
+  height: auto;
+  object-fit: contain;
+  border-radius: 16px; /* inside rounding only */
+  /* no shadow here – we use the shared card shadow */
+}
+
+/* Right side: bigger form area */
+.formSide {
+  background: #fff;
+  padding: clamp(22px, 4vw, 48px);
+  min-width: 0;
+}
+
+.title {
+  font-size: clamp(26px, 3.2vw, 36px);
+  margin: 4px 0 6px;
+  font-weight: 800;
+  color: #111;
+}
+
+.subtle {
+  color: #555;
+  margin: 0 0 18px;
+}
+
+/* Tabs */
+.tabs {
+  background: var(--c-cloud);
+  padding: 6px;
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin: 10px 0 22px;
+}
+.tab {
+  border: none;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 600;
+}
+.tabActive {
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+/* Form container sizing for a “bigger” feel */
+.formBody {
+  width: min(640px, 100%); /* bigger than before */
+}
+
+/* Responsive */
+@media (max-width: 1080px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+  .imageSide {
+    order: -1;
+  }
+  .formBody {
+    width: 100%;
+  }
+}

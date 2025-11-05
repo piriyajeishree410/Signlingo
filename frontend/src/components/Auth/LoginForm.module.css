@@ -1,0 +1,89 @@
+@import "../../styles/variables.css";
+
+.form {
+  display: grid;
+  gap: 14px;
+}
+s .row {
+  display: grid;
+  gap: 8px;
+}
+
+.label {
+  font-weight: 600;
+}
+
+.inputWrap {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  background: var(--c-cloud);
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  padding: 14px 44px 14px 16px;
+  font-size: 15px;
+  transition:
+    border 0.15s ease,
+    background 0.15s ease;
+}
+.input:focus {
+  border-color: var(--c-accent);
+  background: #fff;
+}
+
+.eyeBtn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.rowLine {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.submit {
+  background: var(--c-ink);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+.submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.hr {
+  height: 1px;
+  background: var(--c-cloud);
+  margin: 8px 0;
+  border: none;
+}
+
+.altBtn {
+  border: 1px solid var(--c-cloud);
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}

@@ -1,0 +1,21 @@
+.grid {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  background: #fff;
+}
+.content {
+  padding: 28px clamp(16px, 4vw, 40px);
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    radial-gradient(240px 240px at 100% 0%, var(--c-cloud), transparent)
+      border-box;
+}
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 84px 1fr;
+  }
+  .content {
+    padding: 20px;
+  }
+}

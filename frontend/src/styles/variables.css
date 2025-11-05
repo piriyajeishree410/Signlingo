@@ -1,0 +1,13 @@
+:root {
+  --c-ink: #1f2421;
+  --c-deep: #216869;
+  --c-accent: #49a078;
+  --c-mint: #9cc5a1;
+  --c-cloud: #dce1de;
+
+  --radius: 14px;
+  --shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  --font:
+    ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+}

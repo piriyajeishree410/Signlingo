@@ -1,0 +1,60 @@
+@import "../../styles/variables.css";
+
+.form {
+  display: grid;
+  gap: 14px;
+}
+.row {
+  display: grid;
+  gap: 8px;
+}
+.label {
+  font-weight: 600;
+}
+
+.input {
+  width: 100%;
+  background: var(--c-cloud);
+  border: 1px solid transparent;
+  border-radius: var(--c-radius, 14px);
+  padding: 14px 16px;
+  font-size: 15px;
+  transition:
+    border 0.15s ease,
+    background 0.15s ease;
+}
+.input:focus {
+  border-color: var(--c-mint);
+  background: #fff;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.submit {
+  background: var(--c-ink);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+.note {
+  color: #444;
+  font-size: 14px;
+}
+
+.link {
+  border: none;
+  background: transparent;
+  color: var(--c-deep);
+  cursor: pointer;
+  padding: 0;
+  margin: 0 0 0 4px;
+}
