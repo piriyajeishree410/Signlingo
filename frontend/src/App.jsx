@@ -3,6 +3,9 @@ import Flashscreen from "./pages/Flashscreen.jsx";
 import AuthPage from "./pages/Auth/AuthPage.jsx";
 import AppShell from "./layouts/AppShell.jsx";
 import ProfilePage from "./pages/Profile/ProfilePage.jsx";
+import QuizSelectPage from "./pages/Quizzes/QuizSelectPage.jsx";
+import QuizPlayPage from "./pages/Quizzes/QuizPlayPage.jsx";
+
 /* Minimal placeholder pages so the nav works now */
 const Stub = (t) => () => (
   <div style={{ fontSize: 24, fontWeight: 800 }}>{t}</div>
@@ -23,7 +26,9 @@ export default function App() {
       <Route path="/app" element={<AppShell />}>
         <Route index element={<Navigate to="lessons" replace />} />
         <Route path="lessons" element={<LessonsPage />} />
-        <Route path="quizzes" element={<QuizzesPage />} />
+        {/* quizzes */}
+        <Route path="quizzes" element={<QuizSelectPage />} />
+        <Route path="quizzes/:level" element={<QuizPlayPage />} />
         <Route path="leaderboard" element={<LeaderboardPage />} />
         <Route path="live" element={<LivePage />} />
         <Route path="characters" element={<CharactersPage />} />

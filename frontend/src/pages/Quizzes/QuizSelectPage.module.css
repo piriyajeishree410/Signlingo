@@ -1,0 +1,145 @@
+@import "../../styles/variables.css";
+
+/* background "game scene" with soft mint sky */
+.scene {
+  position: relative;
+  min-height: calc(100vh - 56px);
+  padding: 22px clamp(12px, 4vw, 40px);
+  background: linear-gradient(
+    180deg,
+    var(--c-mint) 0%,
+    var(--c-cloud) 60%,
+    #fff 100%
+  );
+  border-radius: 28px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  isolation: isolate;
+  animation: fade 0.28s ease-out both;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.title {
+  text-align: center;
+  font-size: clamp(28px, 5vw, 56px);
+  color: var(--c-deep);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.05);
+  margin: 6px 0 18px;
+}
+
+/* grid and arrows */
+.gridWrap {
+  display: grid;
+  grid-template-columns: 56px 1fr 56px;
+  align-items: center;
+  gap: 10px;
+}
+
+.navBtn {
+  width: 56px;
+  height: 56px;
+  border: none;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--c-deep);
+  font-size: 20px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+.navDisabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(110px, 1fr));
+  gap: clamp(14px, 2vw, 22px);
+  justify-items: center;
+}
+
+.cell {
+  display: grid;
+  place-items: center;
+  gap: 8px;
+}
+
+.starRow {
+  display: flex;
+  gap: 4px;
+  color: var(--c-accent);
+} /* stars use accent to keep palette */
+.star {
+  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.05));
+}
+
+.levelBtn {
+  width: 110px;
+  height: 100px;
+  border: 0;
+  border-radius: 18px;
+  color: #fff;
+  font-weight: 900;
+  font-size: 34px;
+  cursor: pointer;
+  background:
+    radial-gradient(
+      120% 120% at 30% 20%,
+      rgba(255, 255, 255, 0.25) 0%,
+      rgba(255, 255, 255, 0) 40%
+    ),
+    linear-gradient(180deg, var(--c-deep), var(--c-accent));
+  box-shadow:
+    0 10px 0 rgba(0, 0, 0, 0.06) inset,
+    0 12px 22px rgba(0, 0, 0, 0.18);
+  transition:
+    transform 0.06s ease,
+    filter 0.06s ease;
+}
+.levelBtn:active {
+  transform: translateY(1px);
+  filter: brightness(0.97);
+}
+
+.levelLocked {
+  background: linear-gradient(180deg, #aeb7b0, #9aa49d);
+  color: #fff;
+  cursor: not-allowed;
+}
+
+.levelNumber {
+  transform: translateY(2px);
+  display: inline-block;
+}
+
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(90px, 1fr));
+  }
+  .levelBtn {
+    width: 96px;
+    height: 88px;
+    font-size: 28px;
+  }
+}
+@media (max-width: 720px) {
+  .gridWrap {
+    grid-template-columns: 1fr;
+  }
+  .navBtn {
+    display: none;
+  }
+}
