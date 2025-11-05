@@ -5,6 +5,7 @@ import AppShell from "./layouts/AppShell.jsx";
 import ProfilePage from "./pages/Profile/ProfilePage.jsx";
 import QuizSelectPage from "./pages/Quizzes/QuizSelectPage.jsx";
 import QuizPlayPage from "./pages/Quizzes/QuizPlayPage.jsx";
+import LivePracticePage from "./pages/Live/LivePracticePage.jsx";
 
 /* Minimal placeholder pages so the nav works now */
 const Stub = (t) => () => (
@@ -30,7 +31,7 @@ export default function App() {
         <Route path="quizzes" element={<QuizSelectPage />} />
         <Route path="quizzes/:level" element={<QuizPlayPage />} />
         <Route path="leaderboard" element={<LeaderboardPage />} />
-        <Route path="live" element={<LivePage />} />
+        <Route path="live" element={<LivePracticePage />} />
         <Route path="characters" element={<CharactersPage />} />
         <Route path="profile" element={<ProfilePage />} />
       </Route>

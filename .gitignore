@@ -1,23 +1,56 @@
 # Node dependencies
 node_modules/
 frontend/node_modules/
-backend/node_modules/
+server/node_modules/
+
 
 # Build output
 dist/
 build/
 frontend/dist/
 backend/dist/
+.vite/
+.eslintcache
+coverage/
 
 # Env files
 .env
 .env.local
+!.env.example
+server/.env
+frontend/.env
 
 # Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+*.log
 
 # OS/system files
 .DS_Store
 Thumbs.db
+
+# ---------- Python / FastAPI (ml-service) ----------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.mypy_cache/
+.pytest_cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+ENV/
+
+# Large model/data artifacts (DO NOT COMMIT)
+ml-service/models/**
+!ml-service/models/README.md
+
+# If you still have an old “data models” folder somewhere:
+data models/**
+!data models/README.md
+
+

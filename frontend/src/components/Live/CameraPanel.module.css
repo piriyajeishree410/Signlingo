@@ -1,0 +1,103 @@
+@import "../../styles/variables.css";
+
+.wrap {
+  display: grid;
+  gap: 10px;
+}
+
+.videoWrap {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.1);
+  background: var(--c-cloud);
+  min-height: 280px;
+}
+
+.video {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: #000;
+}
+
+.placeholder {
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  min-height: 320px;
+  color: #355;
+  padding: 20px;
+  text-align: center;
+}
+
+.primary {
+  border: none;
+  background: linear-gradient(180deg, var(--c-deep), var(--c-accent));
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  pointer-events: none;
+}
+
+.badge {
+  justify-self: start;
+  margin: 12px;
+  padding: 6px 10px;
+  background: #fff;
+  color: var(--c-deep);
+  border-radius: 999px;
+  font-weight: 800;
+  box-shadow: var(--shadow);
+}
+
+.result {
+  align-self: center;
+  justify-self: center;
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-weight: 900;
+}
+.label {
+  font-size: 28px;
+}
+.conf {
+  opacity: 0.9;
+}
+
+.stop {
+  pointer-events: auto;
+  justify-self: end;
+  margin: 12px;
+  background: var(--c-ink);
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.err {
+  color: #a33;
+  font-weight: 700;
+}
+
+.hidden {
+  display: none;
+}
