@@ -4,7 +4,8 @@ import Flashscreen from "./pages/Flashscreen.jsx";
 import AuthPage from "./pages/Auth/AuthPage.jsx";
 import AppShell from "./layouts/AppShell.jsx";
 import ProfilePage from "./pages/Profile/ProfilePage.jsx";
-import LessonsPage from "./pages/LessonsPage.jsx"; // ✅ keep this
+import LessonsPage from "./pages/LessonsPage.jsx";
+import LessonViewPage from "./pages/LessonViewPage.jsx";
 
 /* Minimal placeholder pages for other routes */
 const Stub = (t) => () => (
@@ -26,7 +27,8 @@ export default function App() {
       {/* AppShell with Navbar + Nested Pages */}
       <Route path="/app" element={<AppShell />}>
         <Route index element={<Navigate to="lessons" replace />} />
-        <Route path="lessons" element={<LessonsPage />} /> {/* ✅ this one stays */}
+        <Route path="lessons" element={<LessonsPage />} />
+        <Route path="lesson/:lessonId" element={<LessonViewPage />} />
         <Route path="quizzes" element={<QuizzesPage />} />
         <Route path="leaderboard" element={<LeaderboardPage />} />
         <Route path="live" element={<LivePage />} />

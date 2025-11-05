@@ -96,3 +96,128 @@
   border: none;
   cursor: pointer;
 }
+
+.lessonView {
+  padding: 2rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #1f2421;
+}
+
+.lessonTitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #216869;
+  margin-bottom: 2rem;
+}
+
+.signCard {
+  background: #ffffffc5;
+  backdrop-filter: blur(4px);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 500px;
+}
+
+.signImage {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.signLabel {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2421;
+  margin-bottom: 0.5rem;
+}
+
+.signDesc {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 0.75rem;
+}
+
+.practiceNote {
+  font-size: 0.95rem;
+  color: #216869;
+  margin-bottom: 1.5rem;
+}
+
+.lessonButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.nextBtn {
+  background: #216869;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.nextBtn:hover {
+  background: #1f2421;
+}
+
+/* progress bar */
+.progressBar {
+  width: 100%;
+  max-width: 480px;
+  height: 8px;
+  background: #dce1de;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+.progressFill {
+  height: 100%;
+  background: #49a078;
+  width: 0;
+  transition: width 0.3s ease;
+}
+.progressText {
+  font-size: 0.9rem;
+  color: #216869;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* fade transition for signs */
+.fadeIn {
+  animation: fadeIn 0.3s ease forwards;
+}
+.fadeOut {
+  animation: fadeOut 0.3s ease forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-10px); }
+}
+
+.practiceBtn {
+  background: transparent;
+  border: 2px solid #216869;
+  color: #216869;
+  border-radius: 8px;
+  padding: 0.6rem 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.practiceBtn:hover {
+  background: #216869;
+  color: #fff;
+}
