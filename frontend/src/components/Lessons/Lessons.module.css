@@ -19,12 +19,14 @@
   border-radius: 1rem;
   padding: 1.2rem;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .cardTitle {
@@ -41,7 +43,7 @@
   font-size: 0.85rem;
   font-weight: 600;
   color: #1f2421;
-  background: rgba(255,255,255,0.6);
+  background: rgba(255, 255, 255, 0.6);
   border-radius: 6px;
   padding: 4px 10px;
 }
@@ -54,15 +56,19 @@
   width: 360px;
   height: 100%;
   background: #fff;
-  box-shadow: -4px 0 12px rgba(0,0,0,0.2);
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.2);
   animation: slideIn 0.3s ease forwards;
   display: flex;
   flex-direction: column;
   z-index: 100;
 }
 @keyframes slideIn {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 .panelHeader {
@@ -199,12 +205,24 @@
   animation: fadeOut 0.3s ease forwards;
 }
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 @keyframes fadeOut {
-  from { opacity: 1; transform: translateY(0); }
-  to { opacity: 0; transform: translateY(-10px); }
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
 }
 
 .practiceBtn {
@@ -220,4 +238,27 @@
 .practiceBtn:hover {
   background: #216869;
   color: #fff;
+}
+
+/* completion row */
+.doneRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  margin: 0.75rem 0 1rem;
+  color: #1f2421;
+  font-weight: 700;
+}
+.doneRow input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #216869; /* theme green */
+}
+
+/* disabled state for Next button */
+.nextBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.2);
 }

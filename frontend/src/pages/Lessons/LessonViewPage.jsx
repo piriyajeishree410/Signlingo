@@ -49,23 +49,36 @@ export default function LessonViewPage() {
   const { lessonId } = useParams();
   const navigate = useNavigate();
   const lesson = lessonData[lessonId];
+
   const [index, setIndex] = useState(0);
   const [animate, setAnimate] = useState(false);
+
+  // track completion per sign
+  const [completed, setCompleted] = useState(() =>
+    Array(lesson?.signs.length || 0).fill(false)
+  );
 
   if (!lesson) return <div style={{ padding: "2rem" }}>Lesson not found.</div>;
 
   const currentSign = lesson.signs[index];
   const hasNext = index < lesson.signs.length - 1;
 
+  const progressPercent = ((index + 1) / lesson.signs.length) * 100;
+
   const handleNext = () => {
+    if (!completed[index]) return; // safeguard
     setAnimate(true);
     setTimeout(() => {
       setAnimate(false);
-      if (hasNext) setIndex(index + 1);
+      if (hasNext) setIndex((i) => i + 1);
     }, 300);
   };
 
-  const progressPercent = ((index + 1) / lesson.signs.length) * 100;
+  const toggleDone = (e) => {
+    const copy = [...completed];
+    copy[index] = e.target.checked;
+    setCompleted(copy);
+  };
 
   return (
     <div className={styles.lessonView}>
@@ -76,7 +89,7 @@ export default function LessonViewPage() {
         <div
           className={styles.progressFill}
           style={{ width: `${progressPercent}%` }}
-        ></div>
+        />
       </div>
       <p className={styles.progressText}>
         Sign {index + 1} of {lesson.signs.length}
@@ -99,9 +112,31 @@ export default function LessonViewPage() {
           Live Practice.
         </p>
 
+        {/* completion checkbox */}
+        <div className={styles.doneRow}>
+          <input
+            id={`done-${lessonId}-${currentSign.id}`}
+            type="checkbox"
+            checked={!!completed[index]}
+            onChange={toggleDone}
+          />
+          <label htmlFor={`done-${lessonId}-${currentSign.id}`}>
+            I’ve practiced this sign
+          </label>
+        </div>
+
         <div className={styles.lessonButtons}>
           {hasNext && (
-            <button className={styles.nextBtn} onClick={handleNext}>
+            <button
+              className={styles.nextBtn}
+              onClick={handleNext}
+              disabled={!completed[index]}
+              title={
+                !completed[index]
+                  ? "Mark as done to continue"
+                  : "Go to next sign"
+              }
+            >
               Next →
             </button>
           )}
