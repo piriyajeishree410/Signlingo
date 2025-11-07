@@ -14,7 +14,8 @@ export async function signup(req, res) {
 
     // Check if email already exists
     const existing = await users.findOne({ email: email.toLowerCase() });
-    if (existing) return res.status(409).json({ error: "Email already registered" });
+    if (existing)
+      return res.status(409).json({ error: "Email already registered" });
 
     // Hash password
     const hashed = await bcrypt.hash(password, 10);
@@ -55,11 +56,15 @@ export async function login(req, res) {
   try {
     const { email, password } = req.body;
     const db = getDB();
-    const user = await db.collection("users").findOne({ email: email.toLowerCase() });
-    if (!user) return res.status(401).json({ error: "Invalid email or password" });
+    const user = await db
+      .collection("users")
+      .findOne({ email: email.toLowerCase() });
+    if (!user)
+      return res.status(401).json({ error: "Invalid email or password" });
 
     const match = await bcrypt.compare(password, user.passwordHash);
-    if (!match) return res.status(401).json({ error: "Invalid email or password" });
+    if (!match)
+      return res.status(401).json({ error: "Invalid email or password" });
 
     req.session.userId = user._id;
     res.json({

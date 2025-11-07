@@ -227,6 +227,15 @@
   place-items: center;
   cursor: pointer;
 }
+/* highlight states */
+.optionCorrect {
+  outline: 3px solid #49a078;
+  background: rgba(73, 160, 120, 0.12);
+}
+.optionWrong {
+  outline: 3px solid #cc3d3d;
+  background: rgba(204, 61, 61, 0.12);
+}
 
 @media (max-width: 760px) {
   .options {

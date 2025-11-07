@@ -1,6 +1,11 @@
 // backend/src/routes/auth.routes.js
 import express from "express";
-import { signup, login, logout, checkSession } from "../controllers/auth.controller.js";
+import {
+  signup,
+  login,
+  logout,
+  checkSession,
+} from "../controllers/auth.controller.js";
 
 const router = express.Router();
 

@@ -143,3 +143,30 @@
     display: none;
   }
 }
+
+/* in QuizSelectPage.module.css */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12px 12px 12px;
+}
+.scorePill {
+  background: #eaf4ee;
+  color: #216869;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-weight: 700;
+}
+.resetBtn {
+  border: 2px solid #e2e8e4;
+  background: transparent;
+  color: #1f2421;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.resetBtn:hover {
+  background: #f6faf7;
+}

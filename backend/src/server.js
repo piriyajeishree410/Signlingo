@@ -4,6 +4,8 @@ import MongoStore from "connect-mongo";
 import dotenv from "dotenv";
 import { connectDB } from "./db/mongoClient.js";
 import authRoutes from "./routes/auth.routes.js";
+import quizRoutes from "./routes/quiz.routes.js";
+import signsRoutes from "./routes/signs.routes.js"; // <-- add this
 
 dotenv.config();
 
@@ -39,6 +41,8 @@ app.use(
 
 // --- Routes ---
 app.use("/api/auth", authRoutes);
+app.use("/api/quizzes", quizRoutes);
+app.use("/api/signs", signsRoutes);
 
 app.get("/", (req, res) => res.send("SignLingo backend running"));
 

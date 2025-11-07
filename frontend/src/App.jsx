@@ -10,6 +10,7 @@ import LivePracticePage from "./pages/Live/LivePracticePage.jsx";
 import LeaderboardPage from "./pages/Leaderboard/LeaderboardPage.jsx";
 import LessonsPage from "./pages/Lessons/LessonsPage.jsx";
 import LessonViewPage from "./pages/Lessons/LessonViewPage.jsx";
+import CharactersPage from "./pages/Characters/CharactersPage.jsx";
 
 /* Minimal placeholder pages for other routes */
 const Stub = (t) => () => (
@@ -18,7 +19,6 @@ const Stub = (t) => () => (
 
 const QuizzesPage = Stub("Quizzes");
 const LivePage = Stub("Live Practice");
-const CharactersPage = Stub("Characters");
 
 export default function App() {
   return (
