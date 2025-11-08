@@ -1,15 +1,19 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
-  getProfileOverview,
-  updateProfile as apiUpdateProfile,
-  deleteProfile as apiDeleteProfile,
+  getProfileOverview as apiGet,
+  updateProfile as apiUpdate,
+  deleteProfile as apiDelete,
 } from "../api/profile.api";
 
 /**
- * Loads profile overview (user, lessons, quizzes) and exposes helpers.
- * Optional: auto-refresh when tab regains focus (default true).
+ * useProfileOverview()
+ * - Loads user, lessons-in-progress, and quiz stats.
+ * - Exposes updateProfile/deleteProfile helpers that auto-refresh the overview.
+ * - If VITE_DEBUG_USER_ID is set (or opts.userId provided), it appends ?userId=... for dev.
  */
-export default function useProfileOverview({ refetchOnFocus = true } = {}) {
+export default function useProfileOverview(opts = {}) {
+  const debugUserId = opts.userId ?? import.meta.env.VITE_DEBUG_USER_ID ?? null;
+
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
   const [user, setUser] = useState(null);
@@ -22,11 +26,13 @@ export default function useProfileOverview({ refetchOnFocus = true } = {}) {
 
   const mounted = useRef(true);
 
-  async function refresh() {
-    setErr("");
+  const load = useCallback(async () => {
     setLoading(true);
+    setErr("");
     try {
-      const json = await getProfileOverview();
+      const json = await apiGet(
+        debugUserId ? { userId: debugUserId } : undefined
+      );
       const { user, lessons, quizzes } = json.data;
       if (!mounted.current) return;
       setUser(user);
@@ -34,45 +40,32 @@ export default function useProfileOverview({ refetchOnFocus = true } = {}) {
       setQuizStats(quizzes);
     } catch (e) {
       if (!mounted.current) return;
-      setErr("Failed to load profile");
+      setErr(e.message || "Failed to load profile");
     } finally {
       if (mounted.current) setLoading(false);
     }
-  }
+  }, [debugUserId]);
 
-  async function updateProfile(payload) {
-    await apiUpdateProfile(payload);
-    await refresh();
-  }
+  const updateProfile = useCallback(
+    async (payload) => {
+      await apiUpdate(payload);
+      await load();
+    },
+    [load]
+  );
 
-  async function deleteProfile() {
-    await apiDeleteProfile();
-  }
+  const deleteProfile = useCallback(async () => {
+    await apiDelete();
+    // caller will handle redirect
+  }, []);
 
   useEffect(() => {
     mounted.current = true;
-    refresh();
+    load();
     return () => {
       mounted.current = false;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // optional: auto refresh when tab is re-focused
-  useEffect(() => {
-    if (!refetchOnFocus) return;
-    const onFocus = () => refresh();
-    const onVis = () => {
-      if (document.visibilityState === "visible") refresh();
-    };
-    window.addEventListener("focus", onFocus);
-    document.addEventListener("visibilitychange", onVis);
-    return () => {
-      window.removeEventListener("focus", onFocus);
-      document.removeEventListener("visibilitychange", onVis);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [refetchOnFocus]);
+  }, [load]);
 
   return {
     loading,
@@ -80,8 +73,8 @@ export default function useProfileOverview({ refetchOnFocus = true } = {}) {
     user,
     lessons,
     quizStats,
-    refresh,
     updateProfile,
     deleteProfile,
+    refresh: load,
   };
 }
