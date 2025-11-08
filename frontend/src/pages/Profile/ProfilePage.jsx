@@ -186,6 +186,9 @@ export default function ProfilePage() {
             onContinue={() => (window.location.href = `/app/quizzes`)}
           />
         </div>
+        <div className={s.totalScore}>
+          Total Quiz Score: {quizStats?.totalScore ?? 0}
+        </div>
       </section>
 
       {/* Modals */}

@@ -311,3 +311,12 @@
 .confirmBody {
   padding: 18px;
 }
+
+/* ProfilePage.module.css */
+.totalScore {
+  margin-top: 0.75rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #2b3a33; /* harmonizes with the green theme */
+  letter-spacing: 0.2px;
+}
