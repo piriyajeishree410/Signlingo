@@ -179,7 +179,7 @@ export default function ProfilePage() {
               Math.min(
                 100,
                 quizStats.levelsUnlocked
-                  ? Math.round(quizStats.levelsUnlocked)
+                  ? Math.round(quizStats.levelsUnlocked) * 10
                   : 0
               )
             )}

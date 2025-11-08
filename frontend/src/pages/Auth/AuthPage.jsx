@@ -2,61 +2,75 @@ import { useState } from "react";
 import styles from "./AuthPage.module.css";
 import LoginForm from "../../components/Auth/LoginForm.jsx";
 import SignupForm from "../../components/Auth/SignupForm.jsx";
-import loginImg from "../../assets/images/auth/login_image.png"; // ensure this exists
+import loginImg from "../../assets/images/img3.webp";
 
 export default function AuthPage() {
   const [mode, setMode] = useState("login");
 
   return (
     <main className={styles.wrap}>
-      {/* One shared card with a single shadow */}
+      {/* fixed top-right pill like the mock (UI only) */}
+      <button
+        className={styles.topAction}
+        onClick={() => setMode("login")}
+        aria-label="Sign in"
+      >
+        Sign in
+      </button>
+
+      {/* Full-height split layout */}
       <div className={styles.card}>
-        {/* Left: smaller image area */}
+        {/* LEFT: image with overlay copy + dots */}
         <section className={styles.imageSide}>
           <img
             className={styles.img}
             src={loginImg}
-            alt="SignLingo login illustration"
+            alt="Scenic hero"
             draggable="false"
           />
+
+          {/* brand top-left over image (pure UI) */}
+          <div className={styles.brandBar}>
+            <span className={styles.brandLogo} aria-hidden />
+            <span className={styles.brandName}>SignLingo</span>
+          </div>
         </section>
 
-        {/* Right: larger form area */}
+        {/* RIGHT: form column */}
         <section className={styles.formSide}>
-          <h1 className={styles.title}>
-            {mode === "login" ? "Welcome back!" : "Create your account"}
-          </h1>
-          <p className={styles.subtle}>
-            {mode === "login"
-              ? "Please enter your details"
-              : "A few details to get started"}
-          </p>
+          <div className={styles.formInner}>
+            <h1 className={styles.title}>
+              {mode === "login"
+                ? "Welcome Back !"
+                : "Create your SignLingo account"}
+            </h1>
+            <p className={styles.subtle}>
+              {mode === "login"
+                ? "Sign in your account"
+                : "Join us in a minute"}
+            </p>
 
-          <div className={styles.tabs} role="tablist" aria-label="Auth mode">
-            <button
-              role="tab"
-              aria-selected={mode === "login"}
-              className={`${styles.tab} ${mode === "login" ? styles.tabActive : ""}`}
-              onClick={() => setMode("login")}
-            >
-              Login
-            </button>
-            <button
-              role="tab"
-              aria-selected={mode === "signup"}
-              className={`${styles.tab} ${mode === "signup" ? styles.tabActive : ""}`}
-              onClick={() => setMode("signup")}
-            >
-              Sign up
-            </button>
-          </div>
+            <div className={styles.formBody}>
+              {mode === "login" ? (
+                <>
+                  {/* Your existing component (keeps backend call intact) */}
+                  <LoginForm />
 
-          <div className={styles.formBody}>
-            {mode === "login" ? (
-              <LoginForm />
-            ) : (
-              <SignupForm onSwitchToLogin={() => setMode("login")} />
-            )}
+                  <p className={styles.footerNote}>
+                    Don&apos;t have any account?{" "}
+                    <button
+                      type="button"
+                      className={styles.linkBtn}
+                      onClick={() => setMode("signup")}
+                    >
+                      Register
+                    </button>
+                  </p>
+                </>
+              ) : (
+                <SignupForm onSwitchToLogin={() => setMode("login")} />
+              )}
+            </div>
           </div>
         </section>
       </div>
