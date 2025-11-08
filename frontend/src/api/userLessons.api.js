@@ -1,49 +1,61 @@
 // frontend/src/api/userLessons.api.js
 
-const BASE_URL = "http://localhost:5000/api/user-lessons";
+// Build base URL from Vite env (works for any port/host you set in .env)
+const HOST = import.meta.env.VITE_BACKEND_HOST ?? "localhost";
+const PORT = import.meta.env.VITE_BACKEND_PORT ?? "5000";
+const PREFIX = import.meta.env.VITE_API_PREFIX ?? "/api";
 
-/**
- * Creates or starts a new user lesson record (if not already exists)
- */
-export async function startLesson(userId, lessonId) {
-  const res = await fetch(`${BASE_URL}/start`, {
+// If VITE_API_URL is set, it wins. Otherwise we compose host/port/prefix.
+const API_BASE =
+  import.meta.env.VITE_API_URL ?? `http://${HOST}:${PORT}${PREFIX}`;
+
+const BASE_URL = `${API_BASE}/user-lessons`;
+
+// Small helper to keep fetch+errors consistent and include cookies for sessions
+async function jfetch(url, opts = {}) {
+  const res = await fetch(url, { credentials: "include", ...opts });
+  if (!res.ok) {
+    let msg = `Request failed: ${res.status}`;
+    try {
+      const j = await res.json();
+      if (j?.error) msg = j.error;
+    } catch {}
+    throw new Error(msg);
+  }
+  return res.json();
+}
+
+/** Creates/starts a user lesson record (idempotent) */
+export function startLesson(userId, lessonId) {
+  return jfetch(`${BASE_URL}/start`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ userId, lessonId }),
   });
-  return res.json();
 }
 
-/**
- * Fetch existing progress for a specific lesson and user
- */
-export async function fetchUserProgress(userId, lessonId) {
-  const res = await fetch(
-    `${BASE_URL}/progress?userId=${userId}&lessonId=${lessonId}`
-  );
-  return res.json();
+/** Fetch existing progress for a specific lesson and user */
+export function fetchUserProgress(userId, lessonId) {
+  const u = new URL(`${BASE_URL}/progress`);
+  u.searchParams.set("userId", userId);
+  u.searchParams.set("lessonId", lessonId);
+  return jfetch(u.toString());
 }
 
-/**
- * Mark a single sign as completed, awarding XP if new
- */
-export async function markSignDone(userId, lessonId, signId) {
-  const res = await fetch(`${BASE_URL}/${lessonId}/progress`, {
+/** Mark a single sign as completed, awarding XP if new */
+export function markSignDone(userId, lessonId, signId) {
+  return jfetch(`${BASE_URL}/${lessonId}/progress`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ userId, signId }),
   });
-  return res.json();
 }
 
-/**
- * Reset a lesson’s progress for a user
- */
-export async function resetLesson(userId, lessonId) {
-  const res = await fetch(`${BASE_URL}/${lessonId}/reset`, {
+/** Reset a lesson’s progress for a user */
+export function resetLesson(userId, lessonId) {
+  return jfetch(`${BASE_URL}/${lessonId}/reset`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ userId }),
   });
-  return res.json();
 }
