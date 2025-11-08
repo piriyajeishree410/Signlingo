@@ -52,26 +52,40 @@ export const updateProgress = async (req, res) => {
     const { lessonId } = req.params;
     const { userId, signId } = req.body;
 
-    const userLesson = await db.collection("userLessons").findOne({
+    if (!ObjectId.isValid(userId) || !ObjectId.isValid(lessonId)) {
+      return res.status(400).json({ success: false, message: "Invalid IDs" });
+    }
+
+    console.log("🟢 updateProgress called with:", { lessonId, userId, signId });
+
+    // check if userLesson exists; create if not
+    let userLesson = await db.collection("userLessons").findOne({
       userId: new ObjectId(userId),
       lessonId: new ObjectId(lessonId),
     });
 
-    console.log("🟢 updateProgress called with:", { lessonId, userId, signId });
-
-    if (!ObjectId.isValid(userId) || !ObjectId.isValid(lessonId)) {
-  console.log("⚠️ invalid objectId:", { lessonId, userId });
-}
-
     if (!userLesson) {
-      return res.status(404).json({ success: false, message: "UserLesson not found" });
+      userLesson = {
+        userId: new ObjectId(userId),
+        lessonId: new ObjectId(lessonId),
+        completedSigns: [],
+        xpEarned: 0,
+        completed: false,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+      const { insertedId } = await db.collection("userLessons").insertOne(userLesson);
+      userLesson._id = insertedId;
     }
 
-    const updatedSigns = [...new Set([...userLesson.completedSigns.map(String), signId])];
+    // get lesson to count signs
     const lesson = await db.collection("lessons").findOne({ _id: new ObjectId(lessonId) });
+    if (!lesson) return res.status(404).json({ success: false, message: "Lesson not found" });
 
+    // update completed signs + XP
+    const updatedSigns = [...new Set([...userLesson.completedSigns.map(String), signId])];
     const completed = updatedSigns.length === lesson.signIds.length;
-    const xpEarned = updatedSigns.length * 5; // 5 XP per sign
+    const xpEarned = updatedSigns.length * 5;
 
     await db.collection("userLessons").updateOne(
       { _id: userLesson._id },
@@ -87,9 +101,11 @@ export const updateProgress = async (req, res) => {
 
     res.json({ success: true, completed, xpEarned });
   } catch (err) {
+    console.error("updateProgress error:", err);
     res.status(500).json({ success: false, message: err.message });
   }
 };
+
 
 export const resetLesson = async (req, res) => {
   try {
