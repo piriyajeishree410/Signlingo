@@ -139,10 +139,6 @@ export default function ProfilePage() {
           <Metric label="Level" value={user.level ?? 1} />
           <Metric label="Quiz Levels" value={quizStats.levelsUnlocked} />
         </div>
-
-        <div style={{ marginTop: 10, color: "#555", fontWeight: 700 }}>
-          Total Quiz Score: {quizStats.totalScore}
-        </div>
       </section>
 
       {/* Lessons */}
