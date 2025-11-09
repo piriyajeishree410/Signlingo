@@ -1,29 +1,3 @@
-// import { createContext, useContext, useState } from "react";
-
-// const UserStatsContext = createContext();
-
-// export function StatsProvider({ children }) {
-//   const [xp, setXp] = useState(0);
-//   const [streak, setStreak] = useState(0);
-
-//   const addXp = (amount) => setXp((prev) => prev + amount);
-//   const resetXp = () => setXp(0);
-//   const incrementStreak = () => setStreak((prev) => prev + 1);
-//   const resetStreak = () => setStreak(0);
-
-//   return (
-//     <UserStatsContext.Provider
-//       value={{ xp, setXp, addXp, resetXp, streak, setStreak, incrementStreak, resetStreak }}
-//     >
-//       {children}
-//     </UserStatsContext.Provider>
-//   );
-// }
-
-// export function useUserStats() {
-//   return useContext(UserStatsContext);
-// }
-
 import React, { createContext, useContext, useState, useEffect } from "react";
 
 const UserStatsContext = createContext();

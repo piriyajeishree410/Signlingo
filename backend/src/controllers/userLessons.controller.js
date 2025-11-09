@@ -183,33 +183,47 @@ export async function resetLesson(req, res) {
 }
 
 /**
- * GET /api/user-lessons?userId=...
- * Returns a summary of all user lesson progress records
+ * GET /api/user-lessons
+ * Returns a summary of all user lesson progress records for the logged-in user
  */
 export const getAllUserLessons = async (req, res) => {
   try {
     const db = getDB();
-    const { userId } = req.query;
 
+    // ✅ Allow userId from session OR query (for flexibility)
+    const userId = req.query.userId || req.session.userId;
     if (!userId) {
-      return res.status(400).json({ success: false, message: "Missing userId" });
+      return res.status(401).json({
+        success: false,
+        message: "Missing userId or not logged in",
+      });
     }
+
+    const filter = {
+      $or: [
+        { userId: new ObjectId(userId) },
+        { userId: userId.toString() },
+      ],
+    };
 
     const progressList = await db
       .collection("userLessons")
-      .find({ userId: new ObjectId(userId) })
+      .find(filter)
       .project({
         _id: 1,
         lessonId: 1,
         completedSigns: 1,
         xpEarned: 1,
-        lastUpdated: 1,
+        updatedAt: 1,
       })
       .toArray();
 
     res.json({ success: true, progressList });
   } catch (err) {
     console.error("getAllUserLessons error:", err);
-    res.status(500).json({ success: false, message: err.message });
+    res.status(500).json({
+      success: false,
+      message: "Server error fetching user lessons",
+    });
   }
 };

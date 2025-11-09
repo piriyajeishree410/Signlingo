@@ -1,19 +1,29 @@
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { useState } from "react";
 import styles from "./Lessons.module.css";
 
 export default function LessonDetailsPanel({ lesson, onClose }) {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
+  const handleStartOrContinue = () => {
+    setLoading(true);
+    setTimeout(() => {
+      navigate(`/app/lesson/${lesson._id}`);
+    }, 400); // short delay for UX smoothness
+  };
 
   return (
     <aside className={styles.panel}>
       {/* header with back arrow & title */}
       <div
         className={styles.panelHeader}
-        style={{backgroundColor: lesson.color || "#216869",
-                background: `linear-gradient(135deg, ${
-                lesson.color || "#216869"
-                } 0%, #1f2421 100%)`,}}
+        style={{
+          backgroundColor: lesson.color || "#216869",
+          background: `linear-gradient(135deg, ${
+            lesson.color || "#216869"
+          } 0%, #1f2421 100%)`,
+        }}
       >
         <button
           className={styles.backArrow}
@@ -51,11 +61,17 @@ export default function LessonDetailsPanel({ lesson, onClose }) {
           </div>
         )}
 
+        {/* ✅ Dynamic + smoother UX button */}
         <button
           className={styles.startBtn}
-          onClick={() => navigate(`/app/lesson/${lesson._id}`)}
+          onClick={handleStartOrContinue}
+          disabled={loading}
         >
-          Start Lesson
+          {loading
+            ? "Loading..."
+            : lesson.started
+            ? "Continue Lesson"
+            : "Start Lesson"}
         </button>
       </div>
     </aside>

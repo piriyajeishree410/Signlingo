@@ -18,8 +18,6 @@ async function jfetch(url, opts = {}) {
   return json;
 }
 
-// No userId anywhere — session cookie does the auth
-
 /** Creates/starts a user lesson (idempotent) */
 export function startLesson(lessonId) {
   return jfetch(`${BASE}/start`, {
@@ -29,24 +27,25 @@ export function startLesson(lessonId) {
   });
 }
 
-// fetch all user lesson progress summaries
+/** Fetch all user lesson progress summaries */
 export async function fetchAllUserProgress(userId) {
-  const res = await fetch(`http://localhost:5000/api/user-lessons?userId=${userId}`);
-  return res.json();
+  try {
+    const url = userId ? `${BASE}?userId=${userId}` : BASE;
+    const res = await fetch(url, { credentials: "include" });
+    const json = await res.json().catch(() => ({}));
 
-    // normalize possible ObjectId shapes from backend
-  if (data?.success && Array.isArray(data.progressList)) {
-    data.progressList = data.progressList.map((p) => ({
-      ...p,
-      lessonId: p.lessonId?.$oid || p.lessonId || "",
-      userId: p.userId?.$oid || p.userId || "",
-      completedSigns: Array.isArray(p.completedSigns) ? p.completedSigns : [],
-      xpEarned: p.xpEarned ?? 0,
-    }));
+    if (Array.isArray(json)) return json;
+    if (Array.isArray(json.progressList)) return json.progressList;
+    if (Array.isArray(json.data)) return json.data;
+    if (json.progress && Array.isArray(json.progress)) return json.progress;
+
+    console.warn("⚠️ Unknown response shape from /user-lessons:", json);
+    return [];
+  } catch (err) {
+    console.error("❌ fetchAllUserProgress failed:", err);
+    return [];
   }
-  return data;
 }
-
 
 /** Fetch progress for one lesson */
 export function fetchUserProgress(lessonId) {
