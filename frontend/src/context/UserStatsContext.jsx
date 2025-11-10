@@ -1,53 +1,45 @@
-import { createContext, useContext, useEffect, useState } from "react";
+// import { createContext, useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
-const Ctx = createContext();
-
-const DEFAULT_STATS = {
-  xp: 500,
-  streak: 5,
-  level: 3,
-  dailyGoal: 10,
-  dailyProgress: 0,
-};
+const UserStatsContext = createContext();
 
 export function StatsProvider({ children }) {
-  const [stats, setStats] = useState(() => {
-    try {
-      return (
-        JSON.parse(localStorage.getItem("signlingo.stats")) ?? DEFAULT_STATS
-      );
-    } catch {
-      return DEFAULT_STATS;
-    }
+  // 🌸 load saved XP and streak from localStorage
+  const [xp, setXp] = useState(() => {
+    const saved = localStorage.getItem("xp");
+    return saved ? parseInt(saved, 10) : 0;
+  });
+  const [streak, setStreak] = useState(() => {
+    const saved = localStorage.getItem("streak");
+    return saved ? parseInt(saved, 10) : 0;
   });
 
+  // 💾 whenever xp or streak changes, save it
   useEffect(() => {
-    localStorage.setItem("signlingo.stats", JSON.stringify(stats));
-  }, [stats]);
+    localStorage.setItem("xp", xp.toString());
+  }, [xp]);
 
-  const addXP = (n) =>
-    setStats((s) => {
-      const dailyProgress = Math.min(s.dailyGoal, s.dailyProgress + n);
-      const levelUp = Math.floor((s.xp + n) / 1000) > Math.floor(s.xp / 1000);
-      return {
-        ...s,
-        xp: s.xp + n,
-        dailyProgress,
-        level: levelUp ? s.level + 1 : s.level,
-      };
-    });
+  useEffect(() => {
+    localStorage.setItem("streak", streak.toString());
+  }, [streak]);
 
-  const bumpStreak = () => setStats((s) => ({ ...s, streak: s.streak + 1 }));
+  // 🌟 functions to modify xp/streak
+  const addXp = (amount) => setXp((prev) => prev + amount);
+  const resetXp = () => setXp(0);
+  const incrementStreak = () => setStreak((prev) => prev + 1);
+  const resetStreak = () => setStreak(0);
 
   return (
-    <Ctx.Provider value={{ stats, setStats, addXP, bumpStreak }}>
+    <UserStatsContext.Provider
+      value={{ xp, streak, addXp, resetXp, incrementStreak, resetStreak }}
+    >
       {children}
-    </Ctx.Provider>
+    </UserStatsContext.Provider>
   );
 }
 
-export const useUserStats = () => useContext(Ctx);
+export const useUserStats = () => useContext(UserStatsContext);
 
 StatsProvider.propTypes = {
   /** React children rendered inside the provider */

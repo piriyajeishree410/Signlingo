@@ -9,6 +9,7 @@ import {
 } from "../../api/userLessons.api";
 import styles from "../../components/Lessons/Lessons.module.css";
 import PropTypes from "prop-types";
+import { useUserStats } from "../../context/UserStatsContext";
 
 export default function LessonViewPage() {
   const { lessonId } = useParams();
@@ -22,6 +23,7 @@ export default function LessonViewPage() {
   const [done, setDone] = useState(false);
   const [xpEarned, setXpEarned] = useState(0);
   const [completedSigns, setCompletedSigns] = useState([]);
+  const { addXp, resetXp } = useUserStats();
 
   useEffect(() => {
     async function load() {
@@ -92,6 +94,7 @@ export default function LessonViewPage() {
       const resp = await markSignDone(lesson._id, currentSign._id);
       if (resp.success) {
         setXpEarned(resp.xpEarned || 0);
+        addXp(5);
         setCompletedSigns((prev) => [
           ...new Set([...prev, currentSign._id.toString()]),
         ]);
@@ -118,6 +121,7 @@ export default function LessonViewPage() {
       await resetLesson(lesson._id);
       setCompletedSigns([]);
       setXpEarned(0);
+      resetXp();
       setIndex(0);
       navigate("/app/lessons");
     } catch (e) {

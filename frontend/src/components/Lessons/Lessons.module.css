@@ -394,13 +394,25 @@
 .panelHeader {
   animation: fadeSlideDown 0.3s ease forwards;
 }
-/* optional green accent variant */
-.resetBtn--alt {
-  color: #216869;
-  border-color: rgba(33, 104, 105, 0.35);
+
+.resetBtn {
+  background: transparent;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  border-radius: 8px;
+  padding: 0.5rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  align-self: center;
 }
-.resetBtn--alt:hover {
-  background: rgba(33, 104, 105, 0.08);
-  border-color: #216869;
-  color: #1b5556;
+
+.resetBtn:hover {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(33, 104, 105, 0.25);
+}
+
+.resetBtn:active {
+  transform: scale(0.97);
 }
