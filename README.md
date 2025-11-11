@@ -351,7 +351,7 @@ Add screenshots under `docs/screenshots/` and update paths as needed.
 - **Each component in its own file:** yes (see structure).
 - **Deployment:** _TBD: add link once deployed_.
 - **≥2 Mongo collections with CRUD:** `users`, `user_lessons`, `quiz_sessions`, `lessons`, `signs` (create/read/update via endpoints).
-- **1k synthetic records:** add a signs/lessons seed script if needed (e.g., `node scripts/seed_signs.js`).
+- **1k synthetic records:** Yes 
 - **Node + Express:** yes (backend).
 - **Prettier applied:** yes.
 - **Standards-based HTML:** buttons/inputs are semantic; icons are inline SVGs.
