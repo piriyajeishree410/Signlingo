@@ -1,9 +1,11 @@
 // frontend/src/api/auth.api.js
-const HOST = import.meta.env.VITE_BACKEND_HOST ?? "localhost";
-const PORT = import.meta.env.VITE_BACKEND_PORT ?? "5000";
-const PREFIX = import.meta.env.VITE_API_PREFIX ?? "/api";
-const API_URL =
-  import.meta.env.VITE_API_URL ?? `http://${HOST}:${PORT}${PREFIX}`;
+// const HOST = import.meta.env.VITE_BACKEND_HOST ?? "localhost";
+// const PORT = import.meta.env.VITE_BACKEND_PORT ?? "5000";
+// const PREFIX = import.meta.env.VITE_API_PREFIX ?? "/api";
+// const API_URL =
+//   import.meta.env.VITE_API_URL ?? `http://${HOST}:${PORT}${PREFIX}`;
+
+const API_BASE = import.meta.env.VITE_BACKEND_URL ?? "https://signlingo-hzlg.onrender.com/api";
 
 export const AuthAPI = {
   async signup(data) {
