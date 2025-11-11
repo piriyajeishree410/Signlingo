@@ -1,5 +1,7 @@
-const BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:4000/api";
+// const BASE_URL =
+//   import.meta.env.VITE_API_BASE_URL || "http://localhost:4000/api";
+
+const BASE_URL = import.meta.env.VITE_BACKEND_URL ?? "https://signlingo-hzlg.onrender.com/api";
 
 /** Minimal fetch wrapper, backend-ready */
 export async function api(path, { method = "GET", body, token } = {}) {
