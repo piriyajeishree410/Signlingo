@@ -14,6 +14,7 @@ import leaderboardRouter from "./routes/leaderboard.routes.js";
 dotenv.config();
 
 const app = express();
+app.set("trust proxy", 1); 
 app.use(express.json());
 
 const ALLOWED_ORIGIN = process.env.CLIENT_ORIGIN || "http://localhost:5173";
