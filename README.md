@@ -9,8 +9,9 @@ SignLingo is a full-stack web app where learners **study American Sign Language 
 - **Deployed at:** _TBD_
 - **Class Link:** \_CS5610 – Web Development (Fall 2025), Northeastern University (Canvas link: https://northeastern.instructure.com/courses/226004 )
 - **Slides:** https://docs.google.com/presentation/d/1uZTNU8wF9g71Vgxkq_G2oVfmz9dJwNFh9al1qAL02qA/edit?usp=sharing
-- **Thumbnail:**
-- **Video Demonstration:** _TBD_
+- **Thumbnail:** https://raw.githubusercontent.com/Nand-125/image/refs/heads/main/thumbnail.png
+- **ML-Live-Detection Demo:** https://drive.google.com/file/d/1Xv8sZbcAYmOyJaEYQULmYSnUojkMsKD0/view?usp=sharing
+- **Video Demonstration:** https://www.loom.com/share/cb8a679686ed47ef914aed51950b7569
 
 ---
 
