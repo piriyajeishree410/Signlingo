@@ -368,6 +368,7 @@ Add screenshots under `docs/screenshots/` and update paths as needed.
 - **No Axios, Mongoose, or CORS libs:** uses **fetch** and **MongoDB Node driver** only.
 
 ---
+Note : `We were unable to generate images for all the lessons due to time constraints . Therefore, in certain parts of the pages , the images might not load . letter A-Z all images have been generated and updated in the database `
 
 ## License
 
