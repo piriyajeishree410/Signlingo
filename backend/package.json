@@ -7,7 +7,9 @@
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
     "seed:signs": "node src/seed/run-seed.js",
-    "seed:lessons": "node src/seed/seed-lessons.js"
+    "seed:lessons": "node src/seed/seed-lessons.js",
+    "lint": "eslint . --ext .js,.jsx",
+    "lint:fix": "eslint . --ext .js,.jsx --fix"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +25,14 @@
     "mongodb": "^6.20.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-n": "^17.23.1",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-promise": "^7.2.1",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.6.2"
   }
 }

@@ -16,7 +16,7 @@ const now = () => new Date();
 
 function makeAlphabetDocs() {
   const letters = Array.from({ length: 26 }, (_, i) =>
-    String.fromCharCode(65 + i)
+    String.fromCharCode(65 + i),
   ); // A..Z
   return letters.map((L) => ({
     gloss: L,

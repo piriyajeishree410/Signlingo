@@ -9,12 +9,15 @@ if (!MONGO_URI || !DB_NAME) {
   console.error("❌ MONGO_URI or DB_NAME missing in .env");
   process.exit(1);
 }
-const MEDIA = BASE_MEDIA_URL?.replace(/\/$/, "") || "https://example.com/assets";
+const MEDIA =
+  BASE_MEDIA_URL?.replace(/\/$/, "") || "https://example.com/assets";
 
 const now = () => new Date();
 
 function makeAlphabetDocs() {
-  const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)); // A..Z
+  const letters = Array.from({ length: 26 }, (_, i) =>
+    String.fromCharCode(65 + i),
+  ); // A..Z
   return letters.map((L) => ({
     gloss: L,
     display: `Letter ${L}`,
@@ -145,20 +148,90 @@ function makeGreetingDocs() {
 function makeFoodDrinkDocs() {
   // You can expand this list freely; keep slug lowercase with dashes matching your filenames.
   const items = [
-    { gloss: "APPLE", display: "Apple", slug: "apple", description: "Twist knuckle near cheek." },
-    { gloss: "BANANA", display: "Banana", slug: "banana", description: "Peel a banana motion." },
-    { gloss: "RICE", display: "Rice", slug: "rice", description: "Spoon to mouth twice." },
-    { gloss: "BREAD", display: "Bread", slug: "bread", description: "Slice hand across palm." },
-    { gloss: "MILK", display: "Milk", slug: "milk", description: "Fist open/close (milking)."},
-    { gloss: "WATER", display: "Water", slug: "water", description: "‘W’ hand taps chin." },
-    { gloss: "TEA", display: "Tea", slug: "tea", description: "Stir teacup motion." },
-    { gloss: "COFFEE", display: "Coffee", slug: "coffee", description: "Grind fists motion." },
-    { gloss: "JUICE", display: "Juice", slug: "juice", description: "‘J’ near mouth." },
-    { gloss: "PIZZA", display: "Pizza", slug: "pizza", description: "‘Z’ motion near mouth." },
-    { gloss: "SANDWICH", display: "Sandwich", slug: "sandwich", description: "Hands hold & bite motion." },
-    { gloss: "CHEESE", display: "Cheese", slug: "cheese", description: "Rub palms together." },
-    { gloss: "SOUP", display: "Soup", slug: "soup", description: "Spoon to mouth from bowl." },
-    { gloss: "CHICKEN", display: "Chicken", slug: "chicken", description: "Beak motion near mouth." },
+    {
+      gloss: "APPLE",
+      display: "Apple",
+      slug: "apple",
+      description: "Twist knuckle near cheek.",
+    },
+    {
+      gloss: "BANANA",
+      display: "Banana",
+      slug: "banana",
+      description: "Peel a banana motion.",
+    },
+    {
+      gloss: "RICE",
+      display: "Rice",
+      slug: "rice",
+      description: "Spoon to mouth twice.",
+    },
+    {
+      gloss: "BREAD",
+      display: "Bread",
+      slug: "bread",
+      description: "Slice hand across palm.",
+    },
+    {
+      gloss: "MILK",
+      display: "Milk",
+      slug: "milk",
+      description: "Fist open/close (milking).",
+    },
+    {
+      gloss: "WATER",
+      display: "Water",
+      slug: "water",
+      description: "‘W’ hand taps chin.",
+    },
+    {
+      gloss: "TEA",
+      display: "Tea",
+      slug: "tea",
+      description: "Stir teacup motion.",
+    },
+    {
+      gloss: "COFFEE",
+      display: "Coffee",
+      slug: "coffee",
+      description: "Grind fists motion.",
+    },
+    {
+      gloss: "JUICE",
+      display: "Juice",
+      slug: "juice",
+      description: "‘J’ near mouth.",
+    },
+    {
+      gloss: "PIZZA",
+      display: "Pizza",
+      slug: "pizza",
+      description: "‘Z’ motion near mouth.",
+    },
+    {
+      gloss: "SANDWICH",
+      display: "Sandwich",
+      slug: "sandwich",
+      description: "Hands hold & bite motion.",
+    },
+    {
+      gloss: "CHEESE",
+      display: "Cheese",
+      slug: "cheese",
+      description: "Rub palms together.",
+    },
+    {
+      gloss: "SOUP",
+      display: "Soup",
+      slug: "soup",
+      description: "Spoon to mouth from bowl.",
+    },
+    {
+      gloss: "CHICKEN",
+      display: "Chicken",
+      slug: "chicken",
+      description: "Beak motion near mouth.",
+    },
   ];
 
   return items.map((f) => ({

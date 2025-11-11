@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import s from "./QuizSelectPage.module.css";
 import { QuizAPI } from "../../api/quiz.api";

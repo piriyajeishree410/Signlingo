@@ -57,7 +57,10 @@ export const getLessonById = async (req, res) => {
       .collection("lessons")
       .findOne({ _id: new ObjectId(lessonId) });
     console.log("📄 direct findOne result:", checkDoc ? "found" : "not found");
-    console.log("🧩 lesson document snapshot:", JSON.stringify(checkDoc, null, 2));
+    console.log(
+      "🧩 lesson document snapshot:",
+      JSON.stringify(checkDoc, null, 2),
+    );
 
     const pipeline = [
       { $match: { _id: new ObjectId(lessonId) } },
@@ -96,7 +99,12 @@ export const getLessonById = async (req, res) => {
         .json({ success: false, message: "Lesson not found" });
     }
 
-    console.log("✅ lesson loaded:", lesson.title, "signs:", lesson.signs.length);
+    console.log(
+      "✅ lesson loaded:",
+      lesson.title,
+      "signs:",
+      lesson.signs.length,
+    );
 
     res.json({ success: true, lesson });
   } catch (error) {

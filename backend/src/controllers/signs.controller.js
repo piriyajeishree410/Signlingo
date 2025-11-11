@@ -84,7 +84,7 @@ export async function getSign(req, res) {
           createdAt: 1,
           updatedAt: 1,
         },
-      }
+      },
     );
 
     if (!doc) return res.status(404).json({ error: "Not found" });

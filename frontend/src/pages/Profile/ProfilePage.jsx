@@ -20,6 +20,7 @@ export default function ProfilePage() {
     deleteProfile,
   } = useProfileOverview();
 
+  // eslint-disable-next-line no-unused-vars
   const quizProgressPct = useMemo(() => {
     // avoid divide-by-zero and clamp to 0..100
     if (!quizStats?.levelsUnlocked) return 0;

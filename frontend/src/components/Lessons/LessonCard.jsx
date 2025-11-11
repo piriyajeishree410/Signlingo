@@ -3,7 +3,7 @@ import styles from "./Lessons.module.css";
 import PropTypes from "prop-types";
 
 export default function LessonCard({ lesson, onClick }) {
-  const { started, color, title, signCount, signs, estimatedMinutes, time } =
+  const { started, color, title } =
     lesson;
 
   return (

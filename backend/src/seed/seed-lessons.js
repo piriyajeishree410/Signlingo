@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 import dotenv from "dotenv";
-import { ObjectId } from "mongodb";
 
 dotenv.config();
 

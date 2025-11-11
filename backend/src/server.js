@@ -14,7 +14,7 @@ import leaderboardRouter from "./routes/leaderboard.routes.js";
 dotenv.config();
 
 const app = express();
-app.set("trust proxy", 1); 
+app.set("trust proxy", 1);
 app.use(express.json());
 
 const ALLOWED_ORIGIN = process.env.CLIENT_ORIGIN || "http://localhost:5173";
@@ -37,11 +37,11 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Credentials", "true");
   res.setHeader(
     "Access-Control-Allow-Methods",
-    "GET,POST,PUT,PATCH,DELETE,OPTIONS"
+    "GET,POST,PUT,PATCH,DELETE,OPTIONS",
   );
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Content-Type, Authorization, X-Requested-With"
+    "Content-Type, Authorization, X-Requested-With",
   );
 
   if (req.method === "OPTIONS") {
@@ -63,10 +63,10 @@ app.use(
     cookie: {
       maxAge: 24 * 60 * 60 * 1000,
       httpOnly: true,
-      sameSite: "none",   
-      secure: true, 
+      sameSite: "none",
+      secure: true,
     },
-  })
+  }),
 );
 
 // --- Routes ---
@@ -85,7 +85,7 @@ const PORT = process.env.PORT || 5000;
 connectDB()
   .then(() => {
     app.listen(PORT, () =>
-      console.log(`🚀 Server running on http://localhost:${PORT}`)
+      console.log(`🚀 Server running on http://localhost:${PORT}`),
     );
   })
   .catch((err) => console.error("❌ MongoDB connection failed:", err));

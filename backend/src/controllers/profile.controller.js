@@ -12,7 +12,7 @@ function resolveUserId(req) {
 /** Find first existing collection name from a candidate list */
 async function pickExistingCollection(db, names = []) {
   const existing = new Set(
-    (await db.listCollections().toArray()).map((c) => c.name)
+    (await db.listCollections().toArray()).map((c) => c.name),
   );
   return names.find((n) => existing.has(n)) || null;
 }
@@ -45,7 +45,7 @@ export async function getProfileOverview(req, res) {
           quizProgress: 1, // fallback path
           starsByLevel: 1, // fallback path
         },
-      }
+      },
     );
     if (!user) {
       return res
@@ -203,7 +203,7 @@ export async function getProfileOverview(req, res) {
         .collection(qpName)
         .findOne(
           { $or: [{ userId }, { userId: userId.toString() }] },
-          { projection: { totalScore: 1, levelsUnlocked: 1, perLevel: 1 } }
+          { projection: { totalScore: 1, levelsUnlocked: 1, perLevel: 1 } },
         );
     }
 
@@ -274,7 +274,7 @@ export async function updateProfile(req, res) {
           ...(typeof age !== "undefined" ? { age: Number(age) || null } : {}),
           updatedAt: new Date(),
         },
-      }
+      },
     );
 
     res.json({ success: true, message: "Profile updated" });

@@ -29,6 +29,7 @@ export default function SideNav({ onLogout }) {
     { to: "/app/profile", label: "Profile", icon: ProfileIcon },
   ];
 
+  /* eslint-disable no-unused-vars */ 
   return (
     <aside className={s.wrap} aria-label="Sidebar">
       <div
@@ -42,7 +43,7 @@ export default function SideNav({ onLogout }) {
       </div>
 
       <nav className={s.menu}>
-        {items.map(({ to, label, icon: Icon }) => (
+        {items.map(({ to, label, icon: IconComp }) => (
           <NavLink
             key={to}
             to={to}
@@ -51,7 +52,7 @@ export default function SideNav({ onLogout }) {
             }
             end
           >
-            <Icon className={s.icon} />
+            <IconComp className={s.icon} />
             <span className={s.label}>{label}</span>
           </NavLink>
         ))}

@@ -45,7 +45,7 @@ export async function startLesson(req, res) {
       },
       $set: { updatedAt: now },
     },
-    { upsert: true, returnDocument: "after" }
+    { upsert: true, returnDocument: "after" },
   );
 
   res.json({ success: true, userLesson: value });
@@ -155,7 +155,7 @@ export async function updateProgress(req, res) {
         xpEarned,
         updatedAt: new Date(),
       },
-    }
+    },
   );
 
   res.json({ success: true, completed, xpEarned });
@@ -200,10 +200,7 @@ export const getAllUserLessons = async (req, res) => {
     }
 
     const filter = {
-      $or: [
-        { userId: new ObjectId(userId) },
-        { userId: userId.toString() },
-      ],
+      $or: [{ userId: new ObjectId(userId) }, { userId: userId.toString() }],
     };
 
     const progressList = await db

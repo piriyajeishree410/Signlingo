@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import s from "./QuizPlayPage.module.css";
 import { useQuizSession } from "../../hooks/useQuizSession";

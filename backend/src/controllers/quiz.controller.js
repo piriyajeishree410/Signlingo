@@ -66,7 +66,7 @@ export async function resetProgress(req, res) {
           quizProgress: { unlocked: 1, totalScore: 0, starsByLevel: {} },
           updatedAt: new Date(),
         },
-      }
+      },
     );
     res.json({
       message: "Quiz progress reset",
@@ -128,7 +128,7 @@ export async function startQuiz(req, res) {
     const pool = await signs
       .find(
         { "media.imageUrl": { $exists: true, $ne: "" } },
-        { projection: { display: 1 } }
+        { projection: { display: 1 } },
       )
       .toArray();
 
@@ -139,7 +139,7 @@ export async function startQuiz(req, res) {
       // pick 3 wrong choices different from correct
       const wrongs = shuffle(poolTexts.filter((t) => t !== correctText)).slice(
         0,
-        3
+        3,
       );
       const rawChoices = shuffle([correctText, ...wrongs]);
       const correctIdx = rawChoices.indexOf(correctText);
@@ -274,7 +274,7 @@ export async function answerQuestion(req, res) {
       {
         $set: { answers: newAnswers },
         $inc: { score: delta, ...(correct ? { correctCount: 1 } : {}) },
-      }
+      },
     );
 
     // Increment user's global total score
@@ -283,7 +283,7 @@ export async function answerQuestion(req, res) {
       {
         $inc: { "quizProgress.totalScore": delta },
         $set: { updatedAt: new Date() },
-      }
+      },
     );
 
     return res.json({ correct, correctIdx });
@@ -421,7 +421,7 @@ export async function finishQuiz(req, res) {
       {
         $set: { answers: filledAnswers, finishedAt },
         ...(extraPenalty ? { $inc: incDoc } : {}),
-      }
+      },
     );
 
     // Also update user's global total by the extra penalties only
@@ -431,7 +431,7 @@ export async function finishQuiz(req, res) {
         {
           $inc: { "quizProgress.totalScore": extraPenalty },
           $set: { updatedAt: new Date() },
-        }
+        },
       );
     }
 
@@ -463,7 +463,7 @@ export async function finishQuiz(req, res) {
           },
           updatedAt: new Date(),
         },
-      }
+      },
     );
 
     return res.json({
