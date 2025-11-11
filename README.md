@@ -1,6 +1,6 @@
 # SignLingo — Learn ASL with Live Practice, Lessons & Quizzes
 
-SignLingo is a full-stack web app where learners **study American Sign Language (ASL)** through **various lessons**, **timed quizzes with levels**, and **live webcam practice** powered by a lightweight ML detector. Track **XP, streaks, and levels**, and compete on the **leaderboard**—all with a clean, React-based UI and a Node/Express/MongoDB backend.
+SignLingo is a full-stack web app where learners **study American Sign Language (ASL)** through **various lessons**, **timed quizzes with levels**, and **live webcam practice** powered by a lightweight ML detector. Track **XP, and levels**, and compete on the **leaderboard**—all with a clean, React-based UI and a Node/Express/MongoDB backend.
 
 > **Status:** actively developed. This repo contains a React (Vite) frontend and a Node/Express/MongoDB backend (no Axios, no Mongoose, no CORS).
 
@@ -8,7 +8,7 @@ SignLingo is a full-stack web app where learners **study American Sign Language 
 
 - **Deployed at:** _TBD_
 - **Class Link:** \_CS5610 – Web Development (Fall 2025), Northeastern University (Canvas link: https://northeastern.instructure.com/courses/226004 )
-- **Slides:** _TBD_
+- **Slides:** https://docs.google.com/presentation/d/1uZTNU8wF9g71Vgxkq_G2oVfmz9dJwNFh9al1qAL02qA/edit?usp=sharing
 - **Thumbnail:**
 - **Video Demonstration:** _TBD_
 
@@ -31,9 +31,9 @@ Build a usable, useful ASL learning platform that:
 - **Characters:** Searchable ASL sign gallery (labels, categories, tags, images).
 - **Quizzes:** Level-based quizzes with **40s timer**, **stars**, **per-level score**, and **total score** get 3 questions right and unlock a level - 10 levels.
 - **Live Practice:** Webcam capture → server endpoint for **letters/gestures** prediction; shows **label + confidence**.
-- **Profile:** Edit profile, delete account, **XP bar**, streak, level, **lessons in progress**, quiz stats.
-- **Leaderboard:** Top 10 users based on Xp and streaks displayed
-- **Right Rail:** Daily goal progress and quick stats (XP / Streak / Level).
+- **Profile:** Edit profile, delete account, **XP bar**, level, **lessons in progress**, quiz stats.
+- **Leaderboard:** Top 10 users based on Xp displayed
+- **Right Rail:** Daily goal progress and quick stats (XP / Level).
 - **Nav bar:** Navigate through the app
 
 ## Features (Backend)
@@ -302,7 +302,7 @@ Add screenshots under `docs/screenshots/` and update paths as needed.
 - **Design document (Personas, Stories, Mockups):** see `DESIGN.md`.
 - **App accomplishes approved scope:** lessons, quizzes, live practice, profile, leaderboard implemented (see pages/components above).
 - **Usability & Instructions:** this README (build/run), clear navigation (SideNav, AppShell).
-- **Usefulness:** concrete ASL learning workflow + motivation (XP, streaks, stars).
+- **Usefulness:** concrete ASL learning workflow + motivation (XP, stars).
 - **ESLint/Prettier:** configs in project; code formatted.
 - **Organization:** each React component and CSS in its own file; backend files separated by controllers/routes/db.
 - **≥3 React components using hooks:** e.g., `ProfilePage` (useState/useMemo/custom hook), `LessonViewPage`, `QuizPlayPage`, etc.
