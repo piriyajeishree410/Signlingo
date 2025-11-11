@@ -229,12 +229,16 @@ MONGO_URI=<your Atlas connection string>
 SESSION_SECRET=<random-strong-secret>
 NODE_ENV=development
 FASTAPI_URL=http://localhost:8000   # if using the optional detector
+CLIENT_ORIGIN=http://localhost:5173
 ```
 
 Create **frontend** `.env` (e.g., `frontend/.env`):
 
 ```
 VITE_API_URL=http://localhost:5000/api
+VITE_BACKEND_HOST=localhost
+VITE_BACKEND_PORT=5050
+VITE_API_PREFIX=/api
 ```
 
 > **No secrets committed.** Use environment variables and deployment config.
