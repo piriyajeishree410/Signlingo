@@ -1,13 +1,11 @@
-// frontend/src/api/auth.api.js
-const HOST = import.meta.env.VITE_BACKEND_HOST ?? "localhost";
-const PORT = import.meta.env.VITE_BACKEND_PORT ?? "5000";
-const PREFIX = import.meta.env.VITE_API_PREFIX ?? "/api";
-const API_URL =
-  import.meta.env.VITE_API_URL ?? `http://${HOST}:${PORT}${PREFIX}`;
+// Always hit same-origin `/api`.
+// In dev, Vite proxy forwards `/api` → http://localhost:5000.
+// In prod (Render), backend serves the frontend and `/api` on the same domain.
+const API_BASE = "/api";
 
 export const AuthAPI = {
   async signup(data) {
-    const res = await fetch(`${API_URL}/auth/signup`, {
+    const res = await fetch(`${API_BASE}/auth/signup`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -19,7 +17,7 @@ export const AuthAPI = {
   },
 
   async login(data) {
-    const res = await fetch(`${API_URL}/auth/login`, {
+    const res = await fetch(`${API_BASE}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -31,15 +29,14 @@ export const AuthAPI = {
   },
 
   async logout() {
-    // server clears session + cookie
-    await fetch(`${API_URL}/auth/logout`, {
+    await fetch(`${API_BASE}/auth/logout`, {
       method: "POST",
       credentials: "include",
     });
   },
 
   async check() {
-    const res = await fetch(`${API_URL}/auth/check`, {
+    const res = await fetch(`${API_BASE}/auth/check`, {
       credentials: "include",
     });
     return res.json().catch(() => ({}));
