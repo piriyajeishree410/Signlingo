@@ -9,8 +9,8 @@ SignLingo is a full-stack web app where learners **study American Sign Language 
 - **Deployed at:** https://signlingo-frontend-5ve7.onrender.com/
 - **Class Link:** \_CS5610 – Web Development (Fall 2025), Northeastern University (Canvas link: https://northeastern.instructure.com/courses/226004 )
 - **Slides:** https://docs.google.com/presentation/d/1uZTNU8wF9g71Vgxkq_G2oVfmz9dJwNFh9al1qAL02qA/edit?usp=sharing
-- **Thumbnail:**
-- **Video Demonstration:** _TBD_
+- **Video Demonstration:** (https://www.loom.com/share/cb8a679686ed47ef914aed51950b7569)
+- **Live Detection Demo Video:**: https://drive.google.com/file/d/19PXS7g9MuBbt3RL434AvIKafm024JAM6/view?usp=sharing
 
 ---
 
@@ -362,7 +362,7 @@ Add screenshots under `docs/screenshots/` and update paths as needed.
 - **MIT License:** `LICENSE`.
 - **No leftover boilerplate:** cleaned; remove any unused routes/assets before submission.
 - **Google Form submission (thumb/links):** ensure `docs/thumbnail.jpg` and links work.
-- **Narrated video:** _TBD: add Loom/YouTube link_.
+- **Narrated video:** (https://www.loom.com/share/cb8a679686ed47ef914aed51950b7569)
 - **Code freeze timing:** tag or branch **submission** 24h before class.
 - **PropTypes defined for React collections:** components declare PropTypes where applicable.
 - **No Axios, Mongoose, or CORS libs:** uses **fetch** and **MongoDB Node driver** only.
