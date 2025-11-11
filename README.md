@@ -270,8 +270,6 @@ npm run dev            # vite on http://localhost:5173
 
 ### 3) Optional: Live Detector (FastAPI)
 
-If you have the ML service:
-
 ```bash
 # run your FastAPI server (example)
 uvicorn app:app --reload --port 8000
@@ -308,21 +306,20 @@ Add screenshots under `docs/screenshots/` and update paths as needed.
 - **Organization:** each React component and CSS in its own file; backend files separated by controllers/routes/db.
 - **≥3 React components using hooks:** e.g., `ProfilePage` (useState/useMemo/custom hook), `LessonViewPage`, `QuizPlayPage`, etc.
 - **Each component in its own file:** yes (see structure).
-- **Deployment:** _TBD: add link once deployed_.
+- **Deployment:** https://signlingo-frontend-5ve7.onrender.com/
 - **≥2 Mongo collections with CRUD:** `users`, `user_lessons`, `quiz_sessions`, `lessons`, `signs` (create/read/update via endpoints).
-- **1k synthetic records:** add a signs/lessons seed script if needed (e.g., `node scripts/seed_signs.js`).
+- **1k synthetic records:** added a signs/lessons.
 - **Node + Express:** yes (backend).
 - **Prettier applied:** yes.
 - **Standards-based HTML:** buttons/inputs are semantic; icons are inline SVGs.
 - **CSS organized by component:** `*.module.css` beside each component.
-- **README includes Author, Class Link, Objective, Screenshot, Build Steps:** ✅ (this file).
+- **README includes Author, Class Link, Objective, Screenshot, Build Steps:** Yes
 - **No secret credentials in repo:** `.env` used.
 - **Separate package.json for frontend & backend:** yes.
 - **MIT License:** `LICENSE`.
-- **No leftover boilerplate:** cleaned; remove any unused routes/assets before submission.
-- **Google Form submission (thumb/links):** ensure `docs/thumbnail.jpg` and links work.
-- **Narrated video:** _TBD: add Loom/YouTube link_.
-- **Code freeze timing:** tag or branch **submission** 24h before class.
+- **No leftover boilerplate:** cleaned;
+- **Google Form submission (thumb/links):** https://raw.githubusercontent.com/Nand-125/image/refs/heads/main/thumbnail.png
+- **Narrated video:** https://www.loom.com/share/cb8a679686ed47ef914aed51950b7569
 - **PropTypes defined for React collections:** components declare PropTypes where applicable.
 - **No Axios, Mongoose, or CORS libs:** uses **fetch** and **MongoDB Node driver** only.
 
