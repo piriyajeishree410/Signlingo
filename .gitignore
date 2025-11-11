@@ -46,7 +46,6 @@ env/
 ENV/
 
 # Large model/data artifacts (DO NOT COMMIT)
-ml-service/models/**
 !ml-service/models/README.md
 
 # If you still have an old “data models” folder somewhere:
