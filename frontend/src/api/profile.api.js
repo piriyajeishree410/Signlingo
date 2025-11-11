@@ -1,10 +1,10 @@
-// const HOST = import.meta.env.VITE_BACKEND_HOST ?? "localhost";
-// const PORT = import.meta.env.VITE_BACKEND_PORT ?? "5000"; // ← make sure this matches your backend
-// const PREFIX = import.meta.env.VITE_API_PREFIX ?? "/api";
-// const API_BASE =
-//   import.meta.env.VITE_API_URL ?? `http://${HOST}:${PORT}${PREFIX}`;
+const HOST = import.meta.env.VITE_BACKEND_HOST ?? "localhost";
+const PORT = import.meta.env.VITE_BACKEND_PORT ?? "5000"; // ← make sure this matches your backend
+const PREFIX = import.meta.env.VITE_API_PREFIX ?? "/api";
+const API_BASE =
+  import.meta.env.VITE_API_URL ?? `http://${HOST}:${PORT}${PREFIX}`;
 
-const API_BASE = import.meta.env.VITE_BACKEND_URL ?? "https://signlingo-hzlg.onrender.com/api";
+// const API_BASE = import.meta.env.VITE_BACKEND_URL ?? "https://signlingo-hzlg.onrender.com/api";
 
 // ⚠️ Dev only: remove once session cookies are working everywhere
 const DEV_USER_ID =

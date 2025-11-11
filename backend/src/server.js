@@ -7,7 +7,7 @@ import authRoutes from "./routes/auth.routes.js";
 import userLessonsRoutes from "./routes/userLessons.routes.js";
 import lessonsRoutes from "./routes/lessons.routes.js";
 import quizRoutes from "./routes/quiz.routes.js";
-import signsRoutes from "./routes/signs.routes.js"; // <-- add this
+import signsRoutes from "./routes/signs.routes.js";
 import profileRoutes from "./routes/profile.routes.js";
 import leaderboardRouter from "./routes/leaderboard.routes.js";
 
