@@ -6,7 +6,7 @@ SignLingo is a full-stack web app where learners **study American Sign Language 
 
 ---
 
-- **Deployed at:** _TBD_
+- **Deployed at:** https://signlingo-frontend-5ve7.onrender.com/
 - **Class Link:** \_CS5610 – Web Development (Fall 2025), Northeastern University (Canvas link: https://northeastern.instructure.com/courses/226004 )
 - **Slides:** https://docs.google.com/presentation/d/1uZTNU8wF9g71Vgxkq_G2oVfmz9dJwNFh9al1qAL02qA/edit?usp=sharing
 - **Thumbnail:**
@@ -349,7 +349,7 @@ Add screenshots under `docs/screenshots/` and update paths as needed.
 - **Organization:** each React component and CSS in its own file; backend files separated by controllers/routes/db.
 - **≥3 React components using hooks:** e.g., `ProfilePage` (useState/useMemo/custom hook), `LessonViewPage`, `QuizPlayPage`, etc.
 - **Each component in its own file:** yes (see structure).
-- **Deployment:** _TBD: add link once deployed_.
+- **Deployment:** _TBD: (https://signlingo-frontend-5ve7.onrender.com/)
 - **≥2 Mongo collections with CRUD:** `users`, `user_lessons`, `quiz_sessions`, `lessons`, `signs` (create/read/update via endpoints).
 - **1k synthetic records:** Yes 
 - **Node + Express:** yes (backend).
