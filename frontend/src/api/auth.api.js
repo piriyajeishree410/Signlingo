@@ -5,7 +5,7 @@
 // const API_URL =
 //   import.meta.env.VITE_API_URL ?? `http://${HOST}:${PORT}${PREFIX}`;
 
-const API_BASE = import.meta.env.VITE_BACKEND_URL ?? "https://signlingo-hzlg.onrender.com/api";
+const API_URL = import.meta.env.VITE_BACKEND_URL ?? "https://signlingo-hzlg.onrender.com/api";
 
 export const AuthAPI = {
   async signup(data) {
