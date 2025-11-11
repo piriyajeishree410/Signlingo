@@ -93,35 +93,41 @@ Build a usable, useful ASL learning platform that:
 ---
 
 ## Screenshots 
-1. Flashscreen
-   <img width="1708" height="929" alt="Screenshot 2025-11-09 at 1 30 39 PM" src="https://github.com/user-attachments/assets/bbaf2923-31e4-4a52-8fd9-97db75598b7b" />
 
-3. Login/SignUP
-   <img width="1706" height="933" alt="Screenshot 2025-11-09 at 1 31 16 PM" src="https://github.com/user-attachments/assets/cbb54a8e-fc25-4736-8f88-eb796270fd49" /><img width="1710" height="930" alt="Screenshot 2025-11-09 at 1 31 59 PM" src="https://github.com/user-attachments/assets/30e26f75-9316-4501-abc1-d009612e01d2" />
+## 1. Flashscreen
+<img width="1708" height="929" alt="Screenshot 2025-11-09 at 1 30 39 PM" src="https://github.com/user-attachments/assets/bbaf2923-31e4-4a52-8fd9-97db75598b7b" />
 
-5. Lesson
-   <img width="1709" height="930" alt="Screenshot 2025-11-09 at 1 58 35 PM" src="https://github.com/user-attachments/assets/154784ef-f899-4cdb-8e06-76d04703dc63" />
-   
-   <img width="1701" height="925" alt="Screenshot 2025-11-09 at 1 58 50 PM" src="https://github.com/user-attachments/assets/2908dbc0-afe1-40d2-86cc-1ace75ccc601" />
+## 2. Login/SignUP
+
+<img width="1706" height="933" alt="Screenshot 2025-11-09 at 1 31 16 PM" src="https://github.com/user-attachments/assets/cbb54a8e-fc25-4736-8f88-eb796270fd49" /><img width="1710" height="930" alt="Screenshot 2025-11-09 at 1 31 59 PM" src="https://github.com/user-attachments/assets/30e26f75-9316-4501-abc1-d009612e01d2" />
+
+## 3. Lesson
+
+<img width="1709" height="930" alt="Screenshot 2025-11-09 at 1 58 35 PM" src="https://github.com/user-attachments/assets/154784ef-f899-4cdb-8e06-76d04703dc63" />
+<img width="1701" height="925" alt="Screenshot 2025-11-09 at 1 58 50 PM" src="https://github.com/user-attachments/assets/2908dbc0-afe1-40d2-86cc-1ace75ccc601" />
 <img width="1703" height="932" alt="Screenshot 2025-11-11 at 1 00 45 AM" src="https://github.com/user-attachments/assets/291b5d7c-d9fa-4b85-b9fe-b5bc4b0d6f25" />
 
-7. Quiz
-   <img width="1708" height="934" alt="Screenshot 2025-11-11 at 1 01 00 AM" src="https://github.com/user-attachments/assets/497fea7f-0439-45ef-9ce0-7815f2590217" />
-<img width="1700" height="937" alt="Screenshot 2025-11-11 at 1 01 52 AM" src="https://github.com/user-attachments/assets/a<img width="1705" height="920" alt="Screenshot 2025-11-11 at 1 02 11 AM" src="https://github.com/user-attachments/assets/8202ad95-d2ee-4fa0-96a9-c40cc9bb1eb7" />
-9a3d24f-b212-4016-a80c-e39bb56255f1" />
+## 4. Quiz
 
-9. leaderboard
+<img width="1708" height="934" alt="Screenshot 2025-11-11 at 1 01 00 AM" src="https://github.com/user-attachments/assets/497fea7f-0439-45ef-9ce0-7815f2590217" />
+<img width="1700" height="937" alt="Screenshot 2025-11-11 at 1 01 52 AM" src="https://github.com/user-attachments/assets/a<img width="1705" height="920" alt="Screenshot 2025-11-11 at 1 02 11 AM" src="https://github.com/user-attachments/assets/8202ad95-d2ee-4fa0-96a9-c40cc9bb1eb7" />
+
+## 5. leaderboard
+
 10. <img width="1708" height="925" alt="Screenshot 2025-11-11 at 1 02 28 AM" src="https://github.com/user-attachments/assets/58a3afe2-47cf-414a-a814-792039f9dadb" />
     
-11. characters
-12. <img width="1706" height="934" alt="Screenshot 2025-11-11 at 1 04 00 AM" src="https://github.com/user-attachments/assets/4a974877-c6e9-4b59-b7d0-fbd51439b7af" />
+## 6. characters
 
-13. profile
+<img width="1706" height="934" alt="Screenshot 2025-11-11 at 1 04 00 AM" src="https://github.com/user-attachments/assets/4a974877-c6e9-4b59-b7d0-fbd51439b7af" />
+
+## 7. profile
+
 <img width="1708" height="935" alt="Screenshot 2025-11-11 at 1 04 15 AM" src="https://github.com/user-attachments/assets/45dddb7d-521c-4460-ab46-cac7e030716e" />
 
     
-16. live
-    <img width="1709" height="933" alt="Screenshot 2025-11-11 at 1 03 43 AM" src="https://github.com/user-attachments/assets/5f94d30d-bd74-467a-b2c4-88438b098f45" />
+## 8. live
+
+<img width="1709" height="933" alt="Screenshot 2025-11-11 at 1 03 43 AM" src="https://github.com/user-attachments/assets/5f94d30d-bd74-467a-b2c4-88438b098f45" />
 
 
 ## Project Structure (key parts)
@@ -362,6 +368,7 @@ Add screenshots under `docs/screenshots/` and update paths as needed.
 - **No Axios, Mongoose, or CORS libs:** uses **fetch** and **MongoDB Node driver** only.
 
 ---
+Note : `We were unable to generate images for all the lessons due to time constraints . Therefore, in certain parts of the pages , the images might not load . letter A-Z all images have been generated and updated in the database `
 
 ## License
 
