@@ -28,7 +28,10 @@ const ALLOWED_ORIGIN = process.env.CLIENT_ORIGIN || "http://localhost:5173";
 // });
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", ALLOWED_ORIGIN);
+  const origin = req.headers.origin;
+  if (origin === ALLOWED_ORIGIN) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
   res.setHeader("Vary", "Origin");
   res.setHeader("Access-Control-Allow-Credentials", "true");
   res.setHeader(
@@ -39,10 +42,9 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Headers",
     "Content-Type, Authorization, X-Requested-With"
   );
-  res.setHeader("Access-Control-Max-Age", "600"); // cache preflight 10m
 
   if (req.method === "OPTIONS") {
-    return res.status(204).end(); // preflight OK (no body)
+    return res.status(204).end();
   }
   next();
 });
