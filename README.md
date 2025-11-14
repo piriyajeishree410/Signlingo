@@ -32,7 +32,7 @@ Build a usable, useful ASL learning platform that:
 - **Quizzes:** Level-based quizzes with **40s timer**, **stars**, **per-level score**, and **total score** get 3 questions right and unlock a level - 10 levels.
 - **Live Practice:** Webcam capture → server endpoint for **letters/gestures** prediction; shows **label + confidence**.
 - **Profile:** Edit profile, delete account, **XP bar**, level, **lessons in progress**, quiz stats.
-- **Leaderboard:** Top 10 users based on Xp displayed
+- **Leaderboard:** Top 10 users based on XP displayed
 - **Right Rail:** Daily goal progress and quick stats (XP / Level).
 - **Nav bar:** Navigate through the app
 
@@ -262,12 +262,11 @@ LICENSE
 Create **backend** `.env` from `.env.example`:
 
 ```
+MONGO_URI=mongodb+srv://piriyajeishree410:Eerhsiej%40410@cluster0.2dlz3am.mongodb.net/signlingo?retryWrites=true&w=majority
+DB_NAME=signlingo
 PORT=5000
-MONGO_URI=<your Atlas connection string>
-SESSION_SECRET=<random-strong-secret>
-NODE_ENV=development
-FASTAPI_URL=http://localhost:8000   # if using the optional detector
-CLIENT_ORIGIN=http://localhost:5173
+SESSION_SECRET=supersecretvalue
+BASE_MEDIA_URL=https://piriyajeishree410.github.io/Sign-images
 ```
 
 Create **frontend** `.env` (e.g., `frontend/.env`):
@@ -322,16 +321,6 @@ The frontend’s **Live Practice** page will POST frames via the Node proxy (`/a
 
 ---
 
-## Screenshot
-
-Add screenshots under `docs/screenshots/` and update paths as needed.
-
-```
-![Flashscreen](docs/screenshots/01-flashscreen.png)
-```
-
----
-
 ## Authors
 
 - **Nandana Pradeep** — pradeep.na@northeastern.edu
@@ -356,7 +345,7 @@ Add screenshots under `docs/screenshots/` and update paths as needed.
 - **Prettier applied:** yes.
 - **Standards-based HTML:** buttons/inputs are semantic; icons are inline SVGs.
 - **CSS organized by component:** `*.module.css` beside each component.
-- **README includes Author, Class Link, Objective, Screenshot, Build Steps:** ✅ (this file).
+- **README includes Author, Class Link, Objective, Screenshot, Build Steps:** (this file).
 - **No secret credentials in repo:** `.env` used.
 - **Separate package.json for frontend & backend:** yes.
 - **MIT License:** `LICENSE`.
