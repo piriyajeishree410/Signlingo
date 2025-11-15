@@ -6,19 +6,6 @@ const API_BASE =
 
 // const API_BASE = import.meta.env.VITE_BACKEND_URL ?? "https://signlingo-hzlg.onrender.com/api";
 
-// ⚠️ Dev only: remove once session cookies are working everywhere
-const DEV_USER_ID =
-  import.meta.env.VITE_DEV_USER_ID || "672c9b8f11a1e1d9b2efabc3";
-
-// export async function getProfileOverview() {
-//   const url = new URL(`${API_BASE}/profile/overview`);
-//   if (DEV_USER_ID) url.searchParams.set("userId", DEV_USER_ID);
-//   const res = await fetch(url.toString(), { credentials: "include" });
-//   const json = await res.json().catch(() => ({}));
-//   if (!res.ok || !json?.success)
-//     throw new Error(json?.message || "Failed to load overview");
-//   return json;
-// }
 export async function getProfileOverview(opts = {}) {
   const url = new URL(`${API_BASE}/profile/overview`);
   if (opts.userId) url.searchParams.set("userId", opts.userId); // dev fallback
