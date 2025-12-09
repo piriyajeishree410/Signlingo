@@ -1,25 +1,26 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import s from "./SideNav.module.css";
-import { AuthAPI } from "../../api/auth.api";
 import PropTypes from "prop-types";
+import { useAuth } from "../../context/AuthContext.jsx";
 
 export default function SideNav({ onLogout }) {
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
 
   async function handleLogout() {
     try {
       if (onLogout) {
-        await onLogout(); // allow parent override
+        await onLogout(); // parent override if provided
       } else {
-        await AuthAPI.logout(); // default: call backend, destroy session
+        await logout(); // AuthContext logout -> backend + clear state
       }
     } catch (e) {
       console.error("Logout failed:", e);
     } finally {
       navigate("/login", { replace: true });
-      window.location.reload(); // nuke any client state
     }
   }
+
   const items = [
     { to: "/app/lessons", label: "Lessons", icon: HomeIcon },
     { to: "/app/quizzes", label: "Quizzes", icon: AbcIcon },
@@ -29,7 +30,6 @@ export default function SideNav({ onLogout }) {
     { to: "/app/profile", label: "Profile", icon: ProfileIcon },
   ];
 
-  /* eslint-disable no-unused-vars */ 
   return (
     <aside className={s.wrap} aria-label="Sidebar">
       <div
@@ -60,6 +60,15 @@ export default function SideNav({ onLogout }) {
 
       <div className={s.spacer} />
 
+      {/* Logged-in user info */}
+      <div className={s.userCard}>
+        {user?.avatarUrl && (
+          <img src={user.avatarUrl} alt="User avatar" className={s.avatar} />
+        )}
+        <p className={s.userName}>{user?.name || "User"}</p>
+      </div>
+
+      {/* Logout */}
       <button
         className={`${s.item} ${s.logout}`}
         onClick={handleLogout}
@@ -142,8 +151,9 @@ function LogoutIcon(p) {
 }
 
 SideNav.propTypes = {
-  onLogout: PropTypes.func, // optional override from parent
+  onLogout: PropTypes.func,
 };
+
 const IconPropTypes = {
   className: PropTypes.string,
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

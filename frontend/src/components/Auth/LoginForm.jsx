@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import s from "./LoginForm.module.css";
 import { AuthAPI } from "../../api/auth.api";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext.jsx";
+
 
 function EyeIcon({ on, ...props }) {
   return on ? (
@@ -33,26 +35,24 @@ export default function LoginForm() {
   const [remember, setRemember] = useState(false);
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("");
+  const { login } = useAuth();
 
   const navigate = useNavigate();
 
   const onSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setMsg("");
-    try {
-      // await AuthAPI.login({ email, password: pw, remember })
-      // await AuthAPI.login({ email, password: pw });
-      // setMsg("✔ Logged in (demo). Wire to backend later.");
-      const res = await AuthAPI.login({ email, password: pw });
-      setMsg("✔ " + res.message);
-      setTimeout(() => navigate("/app/lessons"), 800);
-    } catch (err) {
-      setMsg(err.message || "Login failed");
-    } finally {
-      setLoading(false);
-    }
-  };
+  e.preventDefault();
+  setLoading(true);
+  setMsg("");
+
+  try {
+    await login(email, pw);
+    navigate("/app");
+  } catch (err) {
+    setMsg("Invalid email or password");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <form className={s.form} onSubmit={onSubmit}>
@@ -118,7 +118,9 @@ export default function LoginForm() {
       <button
         className={s.altBtn}
         type="button"
-        onClick={() => alert("Google OAuth hook here")}
+        onClick={() => {
+        window.location.href = "http://localhost:5000/api/auth/google";
+      }}
       >
         <img
           alt=""

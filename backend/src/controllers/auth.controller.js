@@ -96,6 +96,8 @@ export function logout(req, res) {
 
 // -------------------- CHECK SESSION --------------------
 export function checkSession(req, res) {
-  if (!req.session.userId) return res.status(401).json({ loggedIn: false });
-  res.json({ loggedIn: true, userId: req.session.userId });
+  if (req.isAuthenticated() && req.user) {
+    return res.json({ loggedIn: true, user: req.user });
+  }
+  return res.status(401).json({ loggedIn: false });
 }

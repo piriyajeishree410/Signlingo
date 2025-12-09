@@ -4,9 +4,19 @@ import LoginForm from "../../components/Auth/LoginForm.jsx";
 import SignupForm from "../../components/Auth/SignupForm.jsx";
 import loginImg from "../../assets/images/img3.webp";
 import PropTypes from "prop-types";
+import { useAuth } from "../../context/AuthContext.jsx";
+import { Navigate } from "react-router-dom";
 
 export default function AuthPage() {
   const [mode, setMode] = useState("login");
+  const { user, loading } = useAuth();
+
+  if (loading) return null;
+
+  // If already logged in, then redirect to /app
+  if (user) {
+    return <Navigate to="/app" replace />;
+  }
 
   return (
     <main className={styles.wrap}>

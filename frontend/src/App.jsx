@@ -11,24 +11,24 @@ import LeaderboardPage from "./pages/Leaderboard/LeaderboardPage.jsx";
 import LessonsPage from "./pages/Lessons/LessonsPage.jsx";
 import LessonViewPage from "./pages/Lessons/LessonViewPage.jsx";
 import CharactersPage from "./pages/Characters/CharactersPage.jsx";
-
-/* Minimal placeholder pages for other routes */
-const Stub = (t) => () => (
-  <div style={{ fontSize: 24, fontWeight: 800, padding: "2rem" }}>{t}</div>
-);
-
-const QuizzesPage = Stub("Quizzes");
-const LivePage = Stub("Live Practice");
+import ProtectedRoute from "./components/Auth/ProtectedRoute.jsx";
 
 export default function App() {
   return (
     <Routes>
-      {/* Landing + Auth routes */}
+      {/* Public routes */}
       <Route path="/" element={<Flashscreen />} />
       <Route path="/login" element={<AuthPage />} />
 
-      {/* AppShell with Navbar + Nested Pages */}
-      <Route path="/app" element={<AppShell />}>
+      {/* Protected routes */}
+      <Route
+        path="/app/*"
+        element={
+          <ProtectedRoute>
+            <AppShell />
+          </ProtectedRoute>
+        }
+      >
         <Route index element={<Navigate to="lessons" replace />} />
         <Route path="lessons" element={<LessonsPage />} />
         <Route path="lesson/:lessonId" element={<LessonViewPage />} />
@@ -40,7 +40,7 @@ export default function App() {
         <Route path="profile" element={<ProfilePage />} />
       </Route>
 
-      {/* Fallback route */}
+      {/* Fallback */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

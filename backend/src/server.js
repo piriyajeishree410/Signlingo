@@ -10,6 +10,8 @@ import quizRoutes from "./routes/quiz.routes.js";
 import signsRoutes from "./routes/signs.routes.js";
 import profileRoutes from "./routes/profile.routes.js";
 import leaderboardRouter from "./routes/leaderboard.routes.js";
+import passport from "passport";
+import { configurePassport } from "./config/passport.js";
 
 dotenv.config();
 
@@ -63,11 +65,15 @@ app.use(
     cookie: {
       maxAge: 24 * 60 * 60 * 1000,
       httpOnly: true,
-      sameSite: "none",
-      secure: true,
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      secure: process.env.NODE_ENV === "production" ? true : false,
     },
   }),
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // --- Routes ---
 app.use("/api/auth", authRoutes);
@@ -84,6 +90,7 @@ const PORT = process.env.PORT || 5000;
 // --- Connect to DB, then start the server ---
 connectDB()
   .then(() => {
+    configurePassport(passport);
     app.listen(PORT, () =>
       console.log(`🚀 Server running on http://localhost:${PORT}`),
     );

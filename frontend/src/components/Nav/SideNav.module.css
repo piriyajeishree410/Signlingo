@@ -102,3 +102,36 @@
     border-radius: 14px;
   }
 }
+/* --- User Info Card (Google or Local User) --- */
+.userCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 10px;
+  margin-bottom: 10px;
+
+  background: var(--c-cloud);
+  border-radius: 14px;
+
+  font-weight: 700;
+  color: var(--c-deep);
+
+  cursor: default;
+}
+
+/* avatar image */
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+
+  border: 2px solid var(--c-accent);
+}
+
+/* user name text */
+.userName {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
