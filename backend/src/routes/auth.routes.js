@@ -14,14 +14,7 @@ const router = express.Router();
 router.post("/signup", signup);
 
 // LOCAL LOGIN
-router.post(
-  "/login",
-  passport.authenticate("local"),
-  (req, res) => {
-    // res.json({ user: req.user });
-    }
-  }
-);
+router.post("/login", login);
 
 // GOOGLE LOGIN START
 router.get(
