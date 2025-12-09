@@ -5,9 +5,46 @@
   --c-mint: #9cc5a1;
   --c-cloud: #dce1de;
 
+  /* NEW: explicit semantic action colors */
+  --c-success: var(--c-deep); /* primary approve/confirm */
+  --c-success-strong: var(--c-accent);
+  --c-danger: #c0392b; /* unified red */
+  --c-danger-soft: #fff0f0;
+  --c-danger-border: #f3d5d2;
+
   --radius: 14px;
   --shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   --font:
     ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue",
     Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  /* font family */
+  --ff-sans:
+    "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial;
+
+  /* base sizes */
+  --fs-base: 16px; /* 1rem = 16px */
+  --lh-base: 1.45;
+
+  /* typographic scale (use rem) */
+  --fs-xs: 0.75rem; /* 12px */
+  --fs-sm: 0.875rem; /* 14px */
+  --fs-md: 1rem; /* 16px */
+  --fs-lg: 1.125rem; /* 18px */
+  --fs-xl: 1.25rem; /* 20px */
+  --fs-2xl: 1.5rem; /* 24px */
+  --fs-3xl: clamp(1.75rem, 2.6vw, 2.25rem);
+
+  /* weights */
+  --fw-300: 300;
+  --fw-400: 400;
+  --fw-500: 500;
+  --fw-600: 600;
+  --fw-700: 700;
+  --fw-800: 800;
+
+  /* letter spacing */
+  --ls-tight: -0.01em;
+  --ls-normal: 0em;
+  --ls-wide: 0.02em;
 }

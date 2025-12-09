@@ -3,8 +3,14 @@ import styles from "./Lessons.module.css";
 import PropTypes from "prop-types";
 
 export default function LessonCard({ lesson, onClick }) {
-  const { started, color, title } =
-    lesson;
+  const { started, color, title } = lesson;
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onClick();
+    }
+  };
 
   return (
     <div
@@ -13,6 +19,7 @@ export default function LessonCard({ lesson, onClick }) {
       onClick={onClick}
       role="button"
       tabIndex={0}
+      onKeyDown={handleKeyDown}
     >
       <h3 className={styles.cardTitle}>{title}</h3>
       <p className={styles.cardMeta}>

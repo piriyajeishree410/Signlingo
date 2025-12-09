@@ -46,6 +46,7 @@ export default function CharactersPage() {
 
   return (
     <div className={styles.page}>
+      <h1 className={styles.pageTitle}>Quick LookUp</h1>
       {/* Search bar */}
       <div className={styles.searchWrap}>
         <span className={styles.searchIcon}>🔍</span>

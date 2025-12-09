@@ -32,6 +32,14 @@ export default function SideNav({ onLogout }) {
     { to: "/app/profile", label: "Profile", icon: ProfileIcon },
   ];
 
+  const handleBrandKeyDown = (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      navigate("/app/lessons");
+    }
+  };
+
+  /* eslint-disable no-unused-vars */
   return (
     <aside className={s.wrap} aria-label="Sidebar">
       <div
@@ -39,6 +47,7 @@ export default function SideNav({ onLogout }) {
         onClick={() => navigate("/app/lessons")}
         role="button"
         tabIndex={0}
+        onKeyDown={handleBrandKeyDown}
       >
         <span className={s.logoDot} />
         <span className={s.brandText}>SignLingo</span>

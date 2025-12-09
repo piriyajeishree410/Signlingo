@@ -74,11 +74,11 @@
   flex: 1;
 }
 .logout {
-  color: #b03b3b;
-  background: rgba(255, 0, 0, 0.06);
+  color: var(--c-danger);
+  background: var(--c-danger-soft);
 }
 .logout:hover {
-  background: rgba(255, 0, 0, 0.12);
+  background: #ffe0e0;
 }
 
 @media (max-width: 900px) {

@@ -9,12 +9,24 @@ import heroImg from "../assets/images/hero-bg-2.gif";
 export default function Flashscreen() {
   const navigate = useNavigate();
   const { openHelp } = useHelp();
+  const handleBrandKeyDown = (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      navigate("/");
+    }
+  };
 
   return (
     <div className={styles.container}>
       {/* Top bar */}
       <header className={styles.header}>
-        <div className={styles.brand} onClick={() => navigate("/")}>
+        <div
+          className={styles.brand}
+          onClick={() => navigate("/")}
+          role="button"
+          tabIndex={0}
+          onKeyDown={handleBrandKeyDown}
+        >
           <span className={styles.dot} />
           <span>SignLingo</span>
         </div>

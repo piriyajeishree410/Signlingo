@@ -140,6 +140,7 @@ export default function QuizPlayPage() {
   if (error) {
     return (
       <div className={s.stage}>
+        <h1 className={s.hiddenTitle}>Quiz – Level {level}</h1>
         <header className={s.topbar}>
           <Link className={s.back} to="/app/quizzes">
             ← Levels
@@ -154,6 +155,7 @@ export default function QuizPlayPage() {
   if (loading || !current) {
     return (
       <div className={s.stage}>
+        <h1 className={s.hiddenTitle}>Quiz – Level {level}</h1>
         <header className={s.topbar}>
           <Link className={s.back} to="/app/quizzes">
             ← Levels
@@ -178,6 +180,7 @@ export default function QuizPlayPage() {
 
   return (
     <div className={s.stage}>
+      <h1 className={s.hiddenTitle}>Quiz – Level {level}</h1>
       <header className={s.topbar}>
         <Link className={s.back} to="/app/quizzes">
           ← Levels

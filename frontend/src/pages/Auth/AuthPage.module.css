@@ -206,7 +206,7 @@
   height: 52px;
   border-radius: 12px;
   border: 0;
-  background: var(--black);
+  background: var(--c-success);
   color: #fff;
   font-weight: 700;
   margin-top: 14px;

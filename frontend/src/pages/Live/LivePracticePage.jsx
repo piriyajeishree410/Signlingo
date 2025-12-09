@@ -110,6 +110,7 @@ export default function LivePractice() {
 
   return (
     <div className={s.wrap}>
+      <h1 className={s.pageTitle}>Live Practice</h1>
       <div className={s.left}>
         <div className={s.card}>
           <div className={s.preview}>
