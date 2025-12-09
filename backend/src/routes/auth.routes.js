@@ -3,6 +3,7 @@ import express from "express";
 import passport from "passport";
 import {
   signup,
+  login,
   logout,
   checkSession,
 } from "../controllers/auth.controller.js";
