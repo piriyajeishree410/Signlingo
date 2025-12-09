@@ -1,5 +1,13 @@
 # SignLingo — Design Document
 
+> **Note:**  
+> All updates made specifically for **Project 4** (UI/UX improvements, accessibility, semantics, Help system, Google OAuth, etc.)  
+> are documented in the section  
+> **[P4 Enhancements — Final Design Improvements](#p4-enhancements--final-design-improvements)**  
+> at the end of this file.
+
+---
+
 ## 1) Project Description
 
 **SignLingo** is a web application that helps learners practice American Sign Language (ASL) through **curated lessons**, **live webcam practice**, and **timed, level-based quizzes**. Users earn **XP**, unlock levels and compete on a **leaderboard**. The app emphasizes an accessible, game-like experience that works on laptops and phones, using a Node/Express API and MongoDB with a Vite + React frontend.
@@ -245,3 +253,130 @@
 - **SSE/WebSocket:** reduce polling; live quiz races.
 - **A11y/i18n:** keyboard-only flows, screen reader labels, localization.
 - **Privacy:** optional on-device inference (WebGPU/TFJS) to avoid sending frames.
+
+---
+
+# **P4 Enhancements — Final Design Improvements**
+
+This section lists **all improvements added specifically for Project 4**.
+
+---
+
+## 1. Improved Visual Hierarchy & Typography (UI Polish)
+- Introduced consistent **type scale** (H1/H2/H3/body-small).  
+- Increased legibility using improved spacing, font weights, and consistent line-heights.  
+- Added heading semantics to ensure **screen readers interpret structure correctly**.  
+- Updated layout components (Lesson pages, Quiz pages, Live Practice, Navbar) to match unified typography guidelines.  
+
+---
+
+## 2. Keyboard Accessibility (WCAG-Compliant Navigation)
+- Every interactive element (buttons, links, cards) is now **operable via keyboard**.  
+- Added:
+  - **Tab → Forward navigation**
+  - **Shift + Tab → Reverse navigation**
+  - **Enter → Activate button**
+  - **Space → Activate button (where appropriate)**
+- Added visual **focus outlines**, ensuring users always know which element is active.
+- Implemented keyboard-accessible navigation for:
+  - SideNav links  
+  - Flashscreen brand navigation  
+  - Quiz answer selection  
+  - Modal open/close  
+
+---
+
+## 3. Semantic HTML Improvements
+- Replaced generic `<div>` elements with:
+  - `<header>`
+  - `<nav>`
+  - `<main>`
+  - `<section>`
+  - `<article>`
+  - `<button>`
+- Helps screen readers, improves structure, and boosts Lighthouse A11y score.
+
+---
+
+## 4. New **Help System** (Global Help Modal)
+
+### What was added:
+- A **HelpContext** to manage global state.  
+- A floating **ℹ️ Help button** added to the Flashscreen.  
+- A Help button added to the SideNav as well.  
+- A fully responsive **HelpModal** explaining:
+  - How lessons work  
+  - How quizzes work  
+  - How live practice works  
+  - Keyboard shortcuts  
+  - Login options  
+  - App navigation  
+
+### Accessibility inside modal:
+- Modal traps focus  
+- ESC or ✕ closes it  
+- Clicking outside closes it  
+- Centered layout with max-width for readability  
+
+---
+
+## 5. OAuth2 (Google Login) with Session Persistence
+Improved authentication architecture for P4:
+
+- Added full **Passport.js Google OAuth 2.0 strategy**  
+- Google users are auto-created in MongoDB with:
+  - name  
+  - email  
+  - avatar  
+  - googleId  
+- Session-based login persists across page reloads  
+- AuthContext rewritten for:
+  - automatic `/auth/check` on load  
+  - persistent user state  
+  - redirect handling  
+  - protected routes  
+
+### UX Improvements:
+- “Login with Google” now flows seamlessly into `/app/lessons`.  
+- Returning users skip the login page and resume directly inside the app.
+
+---
+
+## 6. Protected Routes (Frontend Routing Improvements)
+The new **ProtectedRoute** component ensures:
+
+- Users cannot access `/app/...` without login  
+- Logged-in users cannot access `/login`  
+- Smooth navigation between authenticated and public areas  
+
+---
+
+## 7. Improved Avatar & Profile Display
+- Consistent circular mask  
+- Proper scaling with `object-fit: cover`  
+- Graceful fallback for missing avatars  
+- Refined spacing & alignment in SideNav user card  
+
+---
+
+## 8. Responsive Enhancements
+- Improved breakpoints for:
+  - SideNav collapse  
+  - Lessons grid  
+  - Quiz layout  
+  - Live Practice camera area  
+- Better stacking on small screen widths  
+- Ensures all P4 improvements remain usable on mobile  
+
+---
+
+## 9. Code Quality Improvements
+- Added PropTypes for new components  
+- Removed unused imports and dead code  
+- Organized styles into CSS Modules for new modal and navigation logic  
+- Applied consistent formatting across merged branches  
+---
+
+# End of P4 Enhancements Section
+
+
