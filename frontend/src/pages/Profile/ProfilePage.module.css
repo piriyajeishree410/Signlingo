@@ -112,12 +112,12 @@
   background: #e7f5ee;
 }
 .danger {
-  color: #c0392b;
-  border-color: #f3d5d2;
-  background: #fff0f0;
+  color: var(--c-danger);
+  border-color: var(--c-danger-border);
+  background: var(--c-danger-soft);
 }
 .dangerSolid {
-  background: #c0392b !important;
+  background: var(--c-danger) !important;
 }
 
 /* XP row */

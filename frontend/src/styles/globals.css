@@ -7,12 +7,19 @@ html,
 body,
 #root {
   height: 100%;
+  font-size: 100%;
 }
 body {
   margin: 0;
   font-family: var(--font);
   color: #111;
   background: #fff;
+  font-family: var(--ff-sans);
+  font-size: var(--fs-md);
+  line-height: var(--lh-base);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 a {
   color: var(--c-deep);

@@ -4,7 +4,7 @@
   display: grid;
   gap: 14px;
 }
-s .row {
+.row {
   display: grid;
   gap: 8px;
 }
@@ -55,7 +55,7 @@ s .row {
 }
 
 .submit {
-  background: var(--c-ink);
+  background: var(--c-success);
   color: #fff;
   border: none;
   border-radius: var(--radius);

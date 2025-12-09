@@ -35,7 +35,7 @@
 }
 
 .submit {
-  background: var(--c-ink);
+  background: var(--c-success);
   color: #fff;
   border: none;
   border-radius: var(--radius);

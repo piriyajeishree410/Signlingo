@@ -12,7 +12,7 @@ import profileRoutes from "./routes/profile.routes.js";
 import leaderboardRouter from "./routes/leaderboard.routes.js";
 
 dotenv.config();
-
+const isProd = process.env.NODE_ENV === "production";
 const app = express();
 app.set("trust proxy", 1);
 app.use(express.json());
@@ -37,11 +37,11 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Credentials", "true");
   res.setHeader(
     "Access-Control-Allow-Methods",
-    "GET,POST,PUT,PATCH,DELETE,OPTIONS",
+    "GET,POST,PUT,PATCH,DELETE,OPTIONS"
   );
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Content-Type, Authorization, X-Requested-With",
+    "Content-Type, Authorization, X-Requested-With"
   );
 
   if (req.method === "OPTIONS") {
@@ -53,7 +53,7 @@ app.use((req, res, next) => {
 // --- Session setup --- (should be before routes)
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
+    secret: process.env.SESSION_SECRET || "dev-secret",
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
@@ -63,10 +63,10 @@ app.use(
     cookie: {
       maxAge: 24 * 60 * 60 * 1000,
       httpOnly: true,
-      sameSite: "none",
-      secure: true,
+      sameSite: isProd ? "none" : "lax",
+      secure: isProd, // ❗ false on localhost so cookies work over HTTP
     },
-  }),
+  })
 );
 
 // --- Routes ---
@@ -85,7 +85,7 @@ const PORT = process.env.PORT || 5000;
 connectDB()
   .then(() => {
     app.listen(PORT, () =>
-      console.log(`🚀 Server running on http://localhost:${PORT}`),
+      console.log(`🚀 Server running on http://localhost:${PORT}`)
     );
   })
   .catch((err) => console.error("❌ MongoDB connection failed:", err));

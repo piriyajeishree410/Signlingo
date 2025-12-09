@@ -3,7 +3,7 @@
   top: 0;
   align-self: start;
   width: 320px;
-  padding: 16px 10px 16px 4px;
+  padding: 16px 16px;
   background: transparent;
 }
 
@@ -40,7 +40,7 @@
 }
 
 .pillText {
-  line-height: 1.05;
+  line-height: 1.2;
 }
 .value {
   font-weight: 800;

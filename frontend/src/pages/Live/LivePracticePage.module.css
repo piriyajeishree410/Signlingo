@@ -60,7 +60,7 @@
 }
 
 .btnPrimary {
-  background: var(--ink);
+  background: var(--deep);
   color: #fff;
   border: none;
   padding: 10px 14px;
