@@ -1,6 +1,7 @@
 // backend/src/controllers/auth.controller.js
 import bcrypt from "bcryptjs";
 import { getDB } from "../db/mongoClient.js";
+import { ObjectId } from "mongodb"; 
 
 // -------------------- SIGNUP --------------------
 export async function signup(req, res) {
@@ -95,9 +96,43 @@ export function logout(req, res) {
 }
 
 // -------------------- CHECK SESSION --------------------
-export function checkSession(req, res) {
-  if (req.isAuthenticated() && req.user) {
-    return res.json({ loggedIn: true, user: req.user });
+// export function checkSession(req, res) {
+//   if (req.isAuthenticated() && req.user) {
+//     return res.json({ loggedIn: true, user: req.user });
+//   }
+//   return res.status(401).json({ loggedIn: false });
+// }
+
+export async function checkSession(req, res) {
+  try {
+    const userId = req.session?.userId;
+    if (!userId || !ObjectId.isValid(userId)) {
+      return res.status(401).json({ loggedIn: false });
+    }
+
+    const db = getDB();
+    const user = await db.collection("users").findOne(
+      { _id: new ObjectId(userId) },
+      { projection: { name: 1, email: 1, stats: 1 } }
+    );
+
+    if (!user) {
+      return res.status(401).json({ loggedIn: false });
+    }
+
+    return res.json({
+      loggedIn: true,
+      user: {
+        name: user.name,
+        email: user.email,
+        level: user.stats?.level ?? 1,
+        xp: user.stats?.xp ?? 0,
+      },
+    });
+  } catch (err) {
+    console.error("checkSession error:", err);
+    return res.status(500).json({ loggedIn: false });
   }
-  return res.status(401).json({ loggedIn: false });
 }
+
+
