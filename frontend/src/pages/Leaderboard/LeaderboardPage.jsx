@@ -81,8 +81,7 @@ export default function LeaderboardPage() {
 
   return (
     <div className={styles.page}>
-      <h1 className={styles.title}>Leaderboard</h1>
-
+      <h1>Leaderboard</h1>
       {err && <div style={{ color: "crimson", paddingBottom: 12 }}>{err}</div>}
       {loading ? (
         <div style={{ padding: 24 }}>Loading…</div>
