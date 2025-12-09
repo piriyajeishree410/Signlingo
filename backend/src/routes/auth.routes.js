@@ -19,9 +19,6 @@ router.post(
   passport.authenticate("local"),
   (req, res) => {
     // res.json({ user: req.user });
-    // 🔥 ADD THIS LINE: direct update 
-    if (req.user && req.user._id) {
-      req.session.userId = req.user._id.toString();
     }
   }
 );
