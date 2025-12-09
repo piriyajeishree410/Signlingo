@@ -7,24 +7,24 @@ import {
   getAllUserLessons,
   getProgressForLesson,
 } from "../controllers/userLessons.controller.js";
-import { requireAuth } from "../middleware/requireAuth.js";
+
 
 const router = express.Router();
 
-router.get("/progress",requireAuth, getProgressForLesson);
+router.get("/progress", getProgressForLesson);
 
-router.get("/",requireAuth, getAllUserLessons);
+router.get("/", getAllUserLessons);
 
 // CREATE - start a new lesson
-router.post("/start",requireAuth, startLesson);
+router.post("/start", startLesson);
 
 // READ - get all lessons for user
-router.get("/",requireAuth, getUserLessons);
+router.get("/", getUserLessons);
 
 // UPDATE - mark sign as done / complete lesson / add XP
-router.put("/:lessonId/progress",requireAuth, updateProgress);
+router.put("/:lessonId/progress", updateProgress);
 
 // DELETE - reset progress
-router.delete("/:lessonId/reset",requireAuth, resetLesson);
+router.delete("/:lessonId/reset", resetLesson);
 
 export default router;
