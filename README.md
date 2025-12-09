@@ -440,7 +440,7 @@ Significant accessibility improvements:
 
 ### SideNav + buttons now semantically correct
 
-### No divs used as buttons (course requirement)
+### No divs used as buttons
 
 ---
 
@@ -453,8 +453,6 @@ Significant accessibility improvements:
 ### Alt attributes added to all images
 
 ### Better ARIA labels
-
-### “Skip to content” patterns prepared (optional)
 
 ---
 
@@ -481,29 +479,29 @@ Deployment-ready environment vars now include:
 ### Backend `.env`
 
 ```
-GOOGLE_CLIENT_ID=xxxxx
-GOOGLE_CLIENT_SECRET=xxxxx
-GOOGLE_CALLBACK_URL=<your-backend-url>/api/auth/google/callback
-CLIENT_ORIGIN=<frontend-url>
-SESSION_SECRET=xxxxxxxx
+MONGO_URI=mongodb+srv://piriyajeishree410:Eerhsiej%40410@cluster0.2dlz3am.mongodb.net/signlingo?retryWrites=true&w=majority
+DB_NAME=signlingo
+PORT=5000
+SESSION_SECRET=supersecretvalue
+NODE_ENV=development
+BASE_MEDIA_URL=https://piriyajeishree410.github.io/Sign-images
+GOOGLE_CLIENT_ID=655637269402-pa20lpm5tfrub75vulipf38g77l9eag4.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=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
+GOOGLE_CALLBACK_URL=http://localhost:5000/api/auth/google/callback
+FRONTEND_URL=http://localhost:5173
 ```
 
 ### Frontend `.env`
 
 ```
-VITE_BACKEND_URL=<your-backend-url>
+VITE_API_URL=http://localhost:5000/api 
+VITE_BACKEND_HOST=localhost 
+VITE_BACKEND_PORT=5050 
+VITE_API_PREFIX=/api
 ```
-
-Updated CORS + cookie rules ensure:
-
-* Local development works (sameSite=lax)
-* Production works on Render + Vercel (sameSite=none, secure=true)
-
 ---
 
 # **9. Accessibility Testing (Lighthouse & Axe)**
-
-Your teammate implemented fixes to minimize warnings:
 
 ### Color contrast validation
 
@@ -530,7 +528,7 @@ App now passes accessibility audits **without errors**.
 
 ---
 
-# 🌱 **11. Branch Structure**
+# **11. Branch Structure**
 
 ```
 main            → P3 final code
@@ -582,8 +580,8 @@ Project 4 elevates SignLingo with:
 - **No secret credentials in repo:** `.env` used.
 - **Separate package.json for frontend & backend:** yes.
 - **MIT License:** `LICENSE`.
-- **No leftover boilerplate:** cleaned; remove any unused routes/assets before submission.
-- **Google Form submission (thumb/links):** ensure `docs/thumbnail.jpg` and links work.
+- **No leftover boilerplate:** cleaned;
+- **Google Form submission (thumb/links):** ensured `docs/thumbnail.jpg` and links work.
 - **Narrated video:** (https://www.loom.com/share/cb8a679686ed47ef914aed51950b7569)
 - **Code freeze timing:** tag or branch **submission** 24h before class.
 - **PropTypes defined for React collections:** components declare PropTypes where applicable.
