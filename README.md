@@ -4,6 +4,9 @@ SignLingo is a full-stack web app where learners **study American Sign Language 
 
 > **Status:** actively developed. This repo contains a React (Vite) frontend and a Node/Express/MongoDB backend (no Axios, no Mongoose, no CORS).
 
+> > **Note:** All updates made for **Project 4** are listed in the section  
+**[P4 Enhancements (Final Project Improvements)](#p4-enhancements-final-project-improvements)** at the end of this document.
+
 ---
 
 - **Deployed at:** https://signlingo-frontend-5ve7.onrender.com/
@@ -319,6 +322,236 @@ uvicorn app:app --reload --port 8000
 
 The frontend’s **Live Practice** page will POST frames via the Node proxy (`/api/live/detect`).
 
+---
+
+# **P4 Enhancements (Final Project Improvements)**
+
+This section describes all changes implemented for **Project 4**, building on top of the P3 baseline.
+Project 4 focuses on improving **authentication**, **design quality**, **accessibility**, and **usability**, along with building a more robust and polished user experience.
+
+---
+
+# **1. Authentication Overhaul (Passport.js)**
+
+P3 authentication was custom-built using sessions.
+P4 replaces and expands authentication with **Passport.js**:
+
+### Local Strategy (Email + Password)
+
+* Validates user credentials using Passport Local Strategy
+* Proper serialization/deserialization
+* Sessions stored in Mongo (connect-mongo)
+
+### Google OAuth 2.0 Login
+
+* One-click login with Google
+* New users auto-created and stored with avatar
+* Existing users recognized on next login
+* Redirect to `/app/lessons` after successful authentication
+
+### Unified session handling
+
+* `express-session` + MongoStore
+* Cookies configured for local and production (sameSite: none/lax, secure: auto)
+
+### Backend Updates
+
+* New `passport.js` config file
+* Updated `auth.routes.js`
+* Updated `AuthController.checkSession()`
+
+---
+
+# **2. Frontend Authentication Layer (AuthContext + Protected Routes)**
+
+A new **AuthContext** was introduced to manage:
+
+### Persistent login state
+
+### Auto-check session on page reload
+
+### Global `user` object
+
+### `login()` and `logout()` helpers
+
+### Graceful loading state
+
+New utility components:
+
+* **ProtectedRoute.jsx** — prevents unauthorized access
+* **App.jsx** updated to guard `/app/*` routes
+
+---
+
+# **3. Help Modal (Usability Instructions)**
+
+A new **Help Modal** was added to improve discoverability and reduce cognitive load.
+
+### Help content includes:
+
+* How to use lessons, quizzes, live practice
+* How XP, levels, and leaderboard work
+* Authentication instructions
+* **Keyboard accessibility guide (Tab, Shift+Tab, Enter, Esc)**
+* **Typography and readability information**
+* Clean sectioned UI with close button
+
+### Help button added to:
+
+* Flashscreen (landing page)
+* SideNav (for logged-in users)
+
+---
+
+# **4. Typography Improvements**
+
+Project 4 required improved readability and font hierarchy.
+
+Enhancements include:
+
+### Semantic font pairing (headings vs body text)
+
+### Consistent sizing scale
+
+### Improved line-height and spacing
+
+### Higher contrast for better accessibility
+
+### Typography applied across all pages (Lessons, Login, Flashscreen, Quiz, Profile, etc.)
+
+---
+
+# **5. Keyboard Accessibility (A11y)**
+
+Significant accessibility improvements:
+
+### Full keyboard navigation
+
+* `Tab` → forward
+* `Shift + Tab` → backward
+* `Enter` / `Space` → activate
+* `Esc` → close modal
+
+### Brand logo + nav fully keyboard-usable
+
+### Focus states added / improved
+
+### Screen-reader friendly elements
+
+### SideNav + buttons now semantically correct
+
+### No divs used as buttons (course requirement)
+
+---
+
+# **6. Semantic HTML & Structure Improvements**
+
+### Replaced non-semantic wrappers with `<header>`, `<nav>`, `<main>`, `<section>`
+
+### Improved heading hierarchy (H1→H2→H3)
+
+### Alt attributes added to all images
+
+### Better ARIA labels
+
+### “Skip to content” patterns prepared (optional)
+
+---
+
+# **7. UI Enhancements & Polish**
+
+### Updated typography system
+
+### SideNav updated with user avatar (Google photo or placeholder)
+
+### Avatar styling improved (circular, centered, name included)
+
+### Flashscreen layout improved
+
+### Help button added with floating/responsive design
+
+### Spacing, padding, and alignment fixes across the app
+
+---
+
+# **8. Updated Deployment Configuration**
+
+Deployment-ready environment vars now include:
+
+### Backend `.env`
+
+```
+GOOGLE_CLIENT_ID=xxxxx
+GOOGLE_CLIENT_SECRET=xxxxx
+GOOGLE_CALLBACK_URL=<your-backend-url>/api/auth/google/callback
+CLIENT_ORIGIN=<frontend-url>
+SESSION_SECRET=xxxxxxxx
+```
+
+### Frontend `.env`
+
+```
+VITE_BACKEND_URL=<your-backend-url>
+```
+
+Updated CORS + cookie rules ensure:
+
+* Local development works (sameSite=lax)
+* Production works on Render + Vercel (sameSite=none, secure=true)
+
+---
+
+# **9. Accessibility Testing (Lighthouse & Axe)**
+
+Your teammate implemented fixes to minimize warnings:
+
+### Color contrast validation
+
+### Semantic headings
+
+### Labels for all form inputs
+
+### Buttons use `<button>` tags only
+
+### Keyboard navigation fully functional
+
+App now passes accessibility audits **without errors**.
+
+---
+
+# **10. Files Added in P4**
+
+* `backend/src/config/passport.js`
+* `frontend/src/context/AuthContext.jsx`
+* `frontend/src/context/HelpContext.jsx`
+* `frontend/src/components/Help/HelpModal.jsx`
+* `frontend/src/components/Help/HelpModal.module.css`
+* `frontend/src/components/Auth/ProtectedRoute.jsx`
+
+---
+
+# 🌱 **11. Branch Structure**
+
+```
+main            → P3 final code
+passport-auth   → P4 backend + frontend authentication upgrades
+p4-UIchanges    → P4 UI, typography, accessibility improvements
+p4-final        → Final merged P4 submission branch
+```
+
+---
+
+# **12. Summary of P4 Improvements**
+
+Project 4 elevates SignLingo with:
+
+* **Cleaner design**
+* **Better readability**
+* **More accessible interface**
+* **Stronger authentication (Google OAuth)**
+* **More secure session handling**
+* **Better usability documentation (Help Modal)**
+* **More polished UI for deployment**
 ---
 
 ## Authors
