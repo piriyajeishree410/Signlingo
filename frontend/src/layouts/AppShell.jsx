@@ -12,6 +12,10 @@ export default function AppShell() {
 
   return (
     <StatsProvider>
+      {/* ✅ Skip link for keyboard users */}
+      <a href="#main-content" className={styles.skipLink}>
+        Skip to main content
+      </a>
       <div className={`${styles.shell} ${hideRight ? styles.noRight : ""}`}>
         <aside className={styles.left}>
           <SideNav />

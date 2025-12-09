@@ -17,7 +17,7 @@ body {
   font-family: var(--ff-sans);
   font-size: var(--fs-md);
   line-height: var(--lh-base);
-  color: var(--ink);
+  color: var(--c-ink);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -34,4 +34,20 @@ button {
 input,
 button {
   outline: none;
+}
+
+/* === ACCESSIBILITY: Visible focus === */
+:where(a, button, input, select, textarea, [role="button"]) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 3px solid #216869; /* your brand green */
+  outline-offset: 3px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 3px solid #216869;
 }
