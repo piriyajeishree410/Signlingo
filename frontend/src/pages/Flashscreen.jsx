@@ -2,12 +2,13 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Flashscreen.module.css";
 import PropTypes from "prop-types";
+import { useHelp } from "../context/HelpContext.jsx"; // <-- correct path
 
-// If your asset is PNG, just switch to .png here.
 import heroImg from "../assets/images/hero-bg-2.gif";
 
 export default function Flashscreen() {
   const navigate = useNavigate();
+  const { openHelp } = useHelp();
 
   return (
     <div className={styles.container}>
@@ -19,6 +20,16 @@ export default function Flashscreen() {
         </div>
 
         <nav className={styles.nav}>
+          {/* Help button inside header */}
+          <button
+            className={styles.helpBtn}
+            onClick={openHelp}
+            aria-label="Open help instructions"
+          >
+            ℹ️
+          </button>
+
+          {/* Login button */}
           <button
             className={styles.loginBtn}
             onClick={() => navigate("/login")}
@@ -28,9 +39,8 @@ export default function Flashscreen() {
         </nav>
       </header>
 
-      {/* Hero split */}
+      {/* Hero section */}
       <section className={styles.hero}>
-        {/* Left */}
         <div className={styles.left}>
           <p className={styles.kicker}>Welcome to SignLingo</p>
 
@@ -55,7 +65,8 @@ export default function Flashscreen() {
               Start learning
             </button>
           </div>
-          {/* Feature cards (row with shadows) */}
+
+          {/* Feature cards */}
           <div className={styles.features}>
             <article className={styles.featureCard}>
               <div className={styles.featureIcon}>🎥</div>
@@ -66,7 +77,7 @@ export default function Flashscreen() {
             <article className={styles.featureCard}>
               <div className={styles.featureIcon}>🔤</div>
               <h4>Letters & gestures</h4>
-              <p>Master A–Z, numbers, and everyday gestures step-by-step.</p>
+              <p>Master A–Z and everyday gestures step-by-step.</p>
             </article>
 
             <article className={styles.featureCard}>
@@ -83,7 +94,7 @@ export default function Flashscreen() {
           </div>
         </div>
 
-        {/* Right – BIG rectangular image (no circle) */}
+        {/* Right hero image */}
         <div className={styles.right}>
           <div className={styles.imageCard}>
             <img

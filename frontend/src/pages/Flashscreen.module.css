@@ -257,3 +257,24 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+
+.helpBtn {
+  background: #eef4f1;
+  border: 1px solid #cce3d8;
+  padding: 6px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-right: 12px;
+  transition: 0.2s ease;
+}
+
+.helpBtn:hover {
+  background: #dcefe6;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

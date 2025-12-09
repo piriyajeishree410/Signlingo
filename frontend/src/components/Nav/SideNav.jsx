@@ -2,10 +2,12 @@ import { NavLink, useNavigate } from "react-router-dom";
 import s from "./SideNav.module.css";
 import PropTypes from "prop-types";
 import { useAuth } from "../../context/AuthContext.jsx";
+import { useHelp } from "../../context/HelpContext.jsx";
 
 export default function SideNav({ onLogout }) {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
+  const { openHelp } = useHelp();
 
   async function handleLogout() {
     try {
@@ -67,6 +69,11 @@ export default function SideNav({ onLogout }) {
         )}
         <p className={s.userName}>{user?.name || "User"}</p>
       </div>
+
+      <button className={s.item} onClick={openHelp} type="button">
+      <span className={s.icon}>❓</span>
+      <span className={s.label}>Help</span>
+      </button>
 
       {/* Logout */}
       <button
