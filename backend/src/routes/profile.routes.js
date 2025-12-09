@@ -4,14 +4,13 @@ import {
   updateProfile,
   deleteProfile,
 } from "../controllers/profile.controller.js";
-import { requireAuth } from "../middleware/requireAuth.js";
 const router = express.Router();
 
 // Dashboard-style overview (user + lessons progress + quiz stats)
-router.get("/overview", requireAuth, getProfileOverview);
+router.get("/overview", getProfileOverview);
 
 // You already had update & delete; leaving here for completeness
-router.patch("/", requireAuth, updateProfile);
-router.delete("/", requireAuth, deleteProfile);
+router.patch("/", updateProfile);
+router.delete("/", deleteProfile);
 
 export default router;
