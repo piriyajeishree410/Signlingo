@@ -119,7 +119,11 @@ export default function LoginForm() {
         className={s.altBtn}
         type="button"
         onClick={() => {
-        window.location.href = "http://localhost:5000/api/auth/google";
+        let base = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+
+        base = base.replace(/\/+$/, "");
+        
+        window.location.href = `${base}/auth/google`;
       }}
       >
         <img
