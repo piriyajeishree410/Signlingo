@@ -1,4 +1,4 @@
-import { useHelp } from "../../context/HelpContext.jsx";
+import { useHelp } from "../../context/helpContext.jsx";
 import styles from "./HelpModal.module.css";
 
 export default function HelpModal() {

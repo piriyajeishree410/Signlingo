@@ -8,7 +8,6 @@ import {
   getProgressForLesson,
 } from "../controllers/userLessons.controller.js";
 
-
 const router = express.Router();
 
 router.get("/progress", getProgressForLesson);

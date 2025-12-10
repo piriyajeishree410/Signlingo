@@ -4,7 +4,7 @@ import LoginForm from "../../components/Auth/LoginForm.jsx";
 import SignupForm from "../../components/Auth/SignupForm.jsx";
 import loginImg from "../../assets/images/img3.webp";
 import PropTypes from "prop-types";
-import { useAuth } from "../../context/AuthContext.jsx";
+import { useAuth } from "../../context/authContext.jsx";
 import { Navigate } from "react-router-dom";
 
 export default function AuthPage() {

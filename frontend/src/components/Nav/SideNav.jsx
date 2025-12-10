@@ -1,12 +1,12 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import s from "./SideNav.module.css";
 import PropTypes from "prop-types";
-import { useAuth } from "../../context/AuthContext.jsx";
-import { useHelp } from "../../context/HelpContext.jsx";
+import { useAuth } from "../../context/authContext.jsx";
+import { useHelp } from "../../context/helpContext.jsx";
 
 export default function SideNav({ onLogout }) {
   const navigate = useNavigate();
-  const { user, logout } = useAuth();
+  const { logout } = useAuth();
   const { openHelp } = useHelp();
 
   async function handleLogout() {

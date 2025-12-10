@@ -37,7 +37,7 @@ router.get(
 
     const redirectUrl = process.env.FRONTEND_URL + "/app/lessons";
     return res.redirect(redirectUrl);
-  }
+  },
 );
 
 // LOGOUT
@@ -46,4 +46,3 @@ router.post("/logout", logout);
 router.get("/check", checkSession);
 
 export default router;
-

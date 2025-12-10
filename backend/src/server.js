@@ -14,21 +14,12 @@ import passport from "passport";
 import { configurePassport } from "./config/passport.js";
 
 dotenv.config();
-const isProd = process.env.NODE_ENV === "production";
+// const isProd = process.env.NODE_ENV === "production";
 const app = express();
 app.set("trust proxy", 1);
 app.use(express.json());
 
 const ALLOWED_ORIGIN = process.env.CLIENT_ORIGIN || "http://localhost:5173";
-
-// app.use((req, res, next) => {
-//   res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
-//   res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
-//   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-//   res.setHeader("Access-Control-Allow-Credentials", "true");
-//   if (req.method === "OPTIONS") return res.sendStatus(200);
-//   next();
-// });
 
 app.use((req, res, next) => {
   const origin = req.headers.origin;
@@ -39,11 +30,11 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Credentials", "true");
   res.setHeader(
     "Access-Control-Allow-Methods",
-    "GET,POST,PUT,PATCH,DELETE,OPTIONS"
+    "GET,POST,PUT,PATCH,DELETE,OPTIONS",
   );
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Content-Type, Authorization, X-Requested-With"
+    "Content-Type, Authorization, X-Requested-With",
   );
 
   if (req.method === "OPTIONS") {
@@ -66,14 +57,13 @@ app.use(
       maxAge: 24 * 60 * 60 * 1000,
       httpOnly: true,
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-      secure: process.env.NODE_ENV === "production" ? true : false,
+      secure: process.env.NODE_ENV === "production",
     },
-  })
+  }),
 );
 
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 // --- Routes ---
 app.use("/api/auth", authRoutes);
@@ -92,7 +82,7 @@ connectDB()
   .then(() => {
     configurePassport(passport);
     app.listen(PORT, () =>
-      console.log(`🚀 Server running on http://localhost:${PORT}`)
+      console.log(`🚀 Server running on http://localhost:${PORT}`),
     );
   })
   .catch((err) => console.error("❌ MongoDB connection failed:", err));
