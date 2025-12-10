@@ -71,16 +71,6 @@ export default function SideNav({ onLogout }) {
 
       <div className={s.spacer} />
 
-      {/* Logged-in user info */}
-      <div className={s.userCard}>
-      <img
-        src={user?.avatarUrl || "/default-avatar.png"}
-        alt="User avatar"
-        className={s.avatar}
-      />
-      <p className={s.userName}>{user?.name || "User"}</p>
-    </div>
-
       <button className={s.item} onClick={openHelp} type="button">
       <span className={s.icon}>❓</span>
       <span className={s.label}>Help</span>

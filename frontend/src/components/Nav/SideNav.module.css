@@ -102,29 +102,3 @@
     border-radius: 14px;
   }
 }
-/* --- User Info Card (Google or Local User) --- */
-.userCard {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 16px 0;
-  margin-top: 10px;
-  border-radius: 16px;
-  background: rgba(0, 0, 0, 0.03);
-}
-
-.avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--c-cloud);
-}
-
-.userName {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--c-deep);
-  text-align: center;
-}

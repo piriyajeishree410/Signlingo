@@ -105,6 +105,18 @@ export function logout(req, res) {
 
 export async function checkSession(req, res) {
   try {
+    if (req.isAuthenticated() && req.user) {
+      return res.json({
+        loggedIn: true,
+        user: {
+          name: req.user.name,
+          email: req.user.email,
+          level: req.user.stats?.level ?? 1,
+          xp: req.user.stats?.xp ?? 0,
+        },
+      });
+    }
+    
     const userId = req.session?.userId;
     if (!userId || !ObjectId.isValid(userId)) {
       return res.status(401).json({ loggedIn: false });

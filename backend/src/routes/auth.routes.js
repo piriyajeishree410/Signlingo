@@ -26,12 +26,18 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect: "http://localhost:5173/login",
+    failureRedirect: process.env.FRONTEND_URL + "/login",
   }),
-  (req, res) => {
+  async (req, res) => {
     console.log("After Google login, req.user =", req.user);
-    res.redirect("http://localhost:5173/app/lessons");
-  },
+
+    req.session.userId = req.user._id;
+
+    await new Promise((resolve) => req.session.save(resolve));
+
+    const redirectUrl = process.env.FRONTEND_URL + "/app/lessons";
+    return res.redirect(redirectUrl);
+  }
 );
 
 // LOGOUT
