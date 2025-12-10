@@ -2,7 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import s from "./LivePracticePage.module.css";
 import PropTypes from "prop-types";
 
-const API_BASE = "/api/live"; // proxied to FastAPI (see vite.config.js)
+// const API_BASE = "/api/live"; // proxied to FastAPI (see vite.config.js)
+const API_BASE =
+  import.meta.env.VITE_LIVE_API_BASE || "/api/live";
 
 export default function LivePractice() {
   const videoRef = useRef(null);
