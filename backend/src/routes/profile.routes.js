@@ -4,7 +4,6 @@ import {
   updateProfile,
   deleteProfile,
 } from "../controllers/profile.controller.js";
-
 const router = express.Router();
 
 // Dashboard-style overview (user + lessons progress + quiz stats)

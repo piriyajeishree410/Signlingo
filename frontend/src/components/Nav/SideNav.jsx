@@ -1,12 +1,12 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import s from "./SideNav.module.css";
 import PropTypes from "prop-types";
-import { useAuth } from "../../context/AuthContext.jsx";
-import { useHelp } from "../../context/HelpContext.jsx";
+import { useAuth } from "../../context/authContext.jsx";
+import { useHelp } from "../../context/helpContext.jsx";
 
 export default function SideNav({ onLogout }) {
   const navigate = useNavigate();
-  const { user, logout } = useAuth();
+  const { logout } = useAuth();
   const { openHelp } = useHelp();
 
   async function handleLogout() {
@@ -70,16 +70,6 @@ export default function SideNav({ onLogout }) {
       </nav>
 
       <div className={s.spacer} />
-
-      {/* Logged-in user info */}
-      <div className={s.userCard}>
-      <img
-        src={user?.avatarUrl || "/default-avatar.png"}
-        alt="User avatar"
-        className={s.avatar}
-      />
-      <p className={s.userName}>{user?.name || "User"}</p>
-    </div>
 
       <button className={s.item} onClick={openHelp} type="button">
       <span className={s.icon}>❓</span>

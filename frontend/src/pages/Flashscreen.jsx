@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Flashscreen.module.css";
 import PropTypes from "prop-types";
-import { useHelp } from "../context/HelpContext.jsx"; // <-- correct path
+import { useHelp } from "../context/helpContext.jsx"; // <-- correct path
 
 import heroImg from "../assets/images/hero-bg-2.gif";
 

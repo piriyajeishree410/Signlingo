@@ -4,12 +4,15 @@ SignLingo is a full-stack web app where learners **study American Sign Language 
 
 > **Status:** actively developed. This repo contains a React (Vite) frontend and a Node/Express/MongoDB backend (no Axios, no Mongoose, no CORS).
 
+> > **Note:** All updates made for **Project 4** are listed in the section  
+**[P4 Enhancements (Final Project Improvements)](#p4-enhancements-final-project-improvements)** at the end of this document.
+
 ---
 
-- **Deployed at:** https://signlingo-frontend-5ve7.onrender.com/
+- **Deployed at:** https://signlingo-frontend-t8s1.onrender.com/
 - **Class Link:** \_CS5610 – Web Development (Fall 2025), Northeastern University (Canvas link: https://northeastern.instructure.com/courses/226004 )
-- **Slides:** https://docs.google.com/presentation/d/1uZTNU8wF9g71Vgxkq_G2oVfmz9dJwNFh9al1qAL02qA/edit?usp=sharing
-- **Video Demonstration:** (https://www.loom.com/share/cb8a679686ed47ef914aed51950b7569)
+- **Slides:** https://docs.google.com/presentation/d/1Rgb2s-IP632DsQBv1Q_8lj-heqppTlNQkdESnjonaK4/edit?slide=id.g3700c6c359d_0_3#slide=id.g3700c6c359d_0_3
+- **Video Demonstration:** (https://www.loom.com/share/670e3e88a6884d1ea06b4a90d98feebc)
 - **Live Detection Demo Video:**: https://drive.google.com/file/d/19PXS7g9MuBbt3RL434AvIKafm024JAM6/view?usp=sharing
 
 ---
@@ -321,6 +324,234 @@ The frontend’s **Live Practice** page will POST frames via the Node proxy (`/a
 
 ---
 
+# **P4 Enhancements (Final Project Improvements)**
+
+This section describes all changes implemented for **Project 4**, building on top of the P3 baseline.
+Project 4 focuses on improving **authentication**, **design quality**, **accessibility**, and **usability**, along with building a more robust and polished user experience.
+
+---
+
+# **1. Authentication Overhaul (Passport.js)**
+
+P3 authentication was custom-built using sessions.
+P4 replaces and expands authentication with **Passport.js**:
+
+### Local Strategy (Email + Password)
+
+* Validates user credentials using Passport Local Strategy
+* Proper serialization/deserialization
+* Sessions stored in Mongo (connect-mongo)
+
+### Google OAuth 2.0 Login
+
+* One-click login with Google
+* New users auto-created and stored with avatar
+* Existing users recognized on next login
+* Redirect to `/app/lessons` after successful authentication
+
+### Unified session handling
+
+* `express-session` + MongoStore
+* Cookies configured for local and production (sameSite: none/lax, secure: auto)
+
+### Backend Updates
+
+* New `passport.js` config file
+* Updated `auth.routes.js`
+* Updated `AuthController.checkSession()`
+
+---
+
+# **2. Frontend Authentication Layer (AuthContext + Protected Routes)**
+
+A new **AuthContext** was introduced to manage:
+
+### Persistent login state
+
+### Auto-check session on page reload
+
+### Global `user` object
+
+### `login()` and `logout()` helpers
+
+### Graceful loading state
+
+New utility components:
+
+* **ProtectedRoute.jsx** — prevents unauthorized access
+* **App.jsx** updated to guard `/app/*` routes
+
+---
+
+# **3. Help Modal (Usability Instructions)**
+
+A new **Help Modal** was added to improve discoverability and reduce cognitive load.
+
+### Help content includes:
+
+* How to use lessons, quizzes, live practice
+* How XP, levels, and leaderboard work
+* Authentication instructions
+* **Keyboard accessibility guide (Tab, Shift+Tab, Enter, Esc)**
+* **Typography and readability information**
+* Clean sectioned UI with close button
+
+### Help button added to:
+
+* Flashscreen (landing page)
+* SideNav (for logged-in users)
+
+---
+
+# **4. Typography Improvements**
+
+Project 4 required improved readability and font hierarchy.
+
+Enhancements include:
+
+### Semantic font pairing (headings vs body text)
+
+### Consistent sizing scale
+
+### Improved line-height and spacing
+
+### Higher contrast for better accessibility
+
+### Typography applied across all pages (Lessons, Login, Flashscreen, Quiz, Profile, etc.)
+
+---
+
+# **5. Keyboard Accessibility (A11y)**
+
+Significant accessibility improvements:
+
+### Full keyboard navigation
+
+* `Tab` → forward
+* `Shift + Tab` → backward
+* `Enter` / `Space` → activate
+* `Esc` → close modal
+
+### Brand logo + nav fully keyboard-usable
+
+### Focus states added / improved
+
+### Screen-reader friendly elements
+
+### SideNav + buttons now semantically correct
+
+### No divs used as buttons
+
+---
+
+# **6. Semantic HTML & Structure Improvements**
+
+### Replaced non-semantic wrappers with `<header>`, `<nav>`, `<main>`, `<section>`
+
+### Improved heading hierarchy (H1→H2→H3)
+
+### Alt attributes added to all images
+
+### Better ARIA labels
+
+---
+
+# **7. UI Enhancements & Polish**
+
+### Updated typography system
+
+### SideNav updated with user avatar (Google photo or placeholder)
+
+### Avatar styling improved (circular, centered, name included)
+
+### Flashscreen layout improved
+
+### Help button added with floating/responsive design
+
+### Spacing, padding, and alignment fixes across the app
+
+---
+
+# **8. Updated Deployment Configuration**
+
+Deployment-ready environment vars now include:
+
+### Backend `.env`
+
+```
+MONGO_URI=mongodb+srv://piriyajeishree410:Eerhsiej%40410@cluster0.2dlz3am.mongodb.net/signlingo?retryWrites=true&w=majority
+DB_NAME=signlingo
+PORT=5000
+SESSION_SECRET=supersecretvalue
+NODE_ENV=development
+BASE_MEDIA_URL=https://piriyajeishree410.github.io/Sign-images
+GOOGLE_CLIENT_ID=655637269402-pa20lpm5tfrub75vulipf38g77l9eag4.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=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
+GOOGLE_CALLBACK_URL=http://localhost:5000/api/auth/google/callback
+FRONTEND_URL=http://localhost:5173
+```
+
+### Frontend `.env`
+
+```
+VITE_API_URL=http://localhost:5000/api 
+VITE_BACKEND_HOST=localhost 
+VITE_BACKEND_PORT=5050 
+VITE_API_PREFIX=/api
+```
+---
+
+# **9. Accessibility Testing (Lighthouse & Axe)**
+
+### Color contrast validation
+
+### Semantic headings
+
+### Labels for all form inputs
+
+### Buttons use `<button>` tags only
+
+### Keyboard navigation fully functional
+
+App now passes accessibility audits **without errors**.
+
+---
+
+# **10. Files Added in P4**
+
+* `backend/src/config/passport.js`
+* `frontend/src/context/AuthContext.jsx`
+* `frontend/src/context/HelpContext.jsx`
+* `frontend/src/components/Help/HelpModal.jsx`
+* `frontend/src/components/Help/HelpModal.module.css`
+* `frontend/src/components/Auth/ProtectedRoute.jsx`
+
+---
+
+# **11. Branch Structure**
+
+```
+main            → P3 final code
+passport-auth   → P4 backend + frontend authentication upgrades
+p4-UIchanges    → P4 UI, typography, accessibility improvements
+p4-final        → Final merged P4 submission branch
+```
+
+---
+
+# **12. Summary of P4 Improvements**
+
+Project 4 elevates SignLingo with:
+
+* **Cleaner design**
+* **Better readability**
+* **More accessible interface**
+* **Stronger authentication (Google OAuth)**
+* **More secure session handling**
+* **Better usability documentation (Help Modal)**
+* **More polished UI for deployment**
+---
+
 ## Authors
 
 - **Nandana Pradeep** — pradeep.na@northeastern.edu
@@ -349,8 +580,8 @@ The frontend’s **Live Practice** page will POST frames via the Node proxy (`/a
 - **No secret credentials in repo:** `.env` used.
 - **Separate package.json for frontend & backend:** yes.
 - **MIT License:** `LICENSE`.
-- **No leftover boilerplate:** cleaned; remove any unused routes/assets before submission.
-- **Google Form submission (thumb/links):** ensure `docs/thumbnail.jpg` and links work.
+- **No leftover boilerplate:** cleaned;
+- **Google Form submission (thumb/links):** ensured `docs/thumbnail.jpg` and links work.
 - **Narrated video:** (https://www.loom.com/share/cb8a679686ed47ef914aed51950b7569)
 - **Code freeze timing:** tag or branch **submission** 24h before class.
 - **PropTypes defined for React collections:** components declare PropTypes where applicable.

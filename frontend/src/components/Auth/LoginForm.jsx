@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import s from "./LoginForm.module.css";
 import { AuthAPI } from "../../api/auth.api";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext.jsx";
+import { useAuth } from "../../context/authContext.jsx";
 
 
 function EyeIcon({ on, ...props }) {
@@ -47,7 +47,7 @@ export default function LoginForm() {
   try {
     await login(email, pw);
     navigate("/app");
-  } catch (err) {
+  } catch {
     setMsg("Invalid email or password");
   } finally {
     setLoading(false);
@@ -119,7 +119,11 @@ export default function LoginForm() {
         className={s.altBtn}
         type="button"
         onClick={() => {
-        window.location.href = "http://localhost:5000/api/auth/google";
+        let base = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+
+        base = base.replace(/\/+$/, "");
+        
+        window.location.href = `${base}/auth/google`;
       }}
       >
         <img
